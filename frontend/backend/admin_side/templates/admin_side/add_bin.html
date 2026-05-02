@@ -1,0 +1,36 @@
+{% extends 'admin/base_site.html' %}
+{% block content %}
+<h1>{{ title }}</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <div id="map" style="height: 400px; width: 100%;"></div>
+
+    <button type="submit" class="default-btn">Add Bin</button>
+</form>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+    var map = L.map('map').setView([51.505, -0.09], 13); // Initial position and zoom
+
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    var marker;
+
+    map.on('click', function(e) {
+        if (marker) {
+            marker.setLatLng(e.latlng);  // Update marker position
+        } else {
+            marker = L.marker(e.latlng).addTo(map);  // Add new marker
+        }
+        // Update form with latitude and longitude
+        document.querySelector('#id_latitude').value = e.latlng.lat;
+        document.querySelector('#id_longitude').value = e.latlng.lng;
+    });
+</script>
+{% endblock %}
