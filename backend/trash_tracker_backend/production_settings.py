@@ -13,7 +13,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Security settings
 SECRET_KEY = config('SECRET_KEY', default='change-me-in-production')
 DEBUG = config('DEBUG', default=False, cast=bool)
-ALLOWED_HOSTS = config('sankalan.onrender.com', default='localhost').split(',')
+# Normalize ALLOWED_HOSTS from env var: 'sankalan.onrender.com,localhost'
+ALLOWED_HOSTS = [h.strip() for h in config('ALLOWED_HOSTS', default='localhost').split(',') if h.strip()]
 
 # Application definition
 INSTALLED_APPS = [
@@ -118,6 +119,10 @@ CORS_ALLOWED_ORIGINS = config(
 
 CORS_ALLOW_CREDENTIALS = True
 
+# Trust CSRF origins from environment (comma-separated, include scheme), example:
+# CSRF_TRUSTED_ORIGINS=https://sankalan.onrender.com
+CSRF_TRUSTED_ORIGINS = [o.strip() for o in config('CSRF_TRUSTED_ORIGINS', default='http://localhost:3000').split(',') if o.strip()]
+
 # Security Headers
 SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', default=True, cast=bool)
 SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', default=True, cast=bool)
@@ -144,7 +149,3 @@ LOGGING = {
     },
 }
 
-CSRF_TRUSTED_ORIGINS = config(
-    'CSRF_TRUSTED_ORIGINS',
-    default='https://sankalan.onrender.com'
-).split(',')
