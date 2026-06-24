@@ -1,8 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:trash_map/bin/bin_fetch.dart';
-import 'package:trash_map/main.dart';
+import 'package:trash_map/api.dart';
 import 'package:http/http.dart' as http;
+import 'package:trash_map/main.dart';
 
 class BinDetailsBottomSheet extends StatelessWidget {
   final Bin bin;
@@ -14,8 +15,8 @@ class BinDetailsBottomSheet extends StatelessWidget {
     Color statusColor = bin.fillLevel == 'Empty'
         ? const Color(0xFF059669)
         : bin.fillLevel == 'Half-Filled'
-            ? Colors.amber
-            : Colors.red;
+        ? Colors.amber
+        : Colors.red;
 
     return Container(
       decoration: const BoxDecoration(
@@ -42,7 +43,7 @@ class BinDetailsBottomSheet extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          
+
           // Header info
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -53,18 +54,27 @@ class BinDetailsBottomSheet extends StatelessWidget {
                   children: [
                     Text(
                       bin.name,
-                      style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       "ID: #${bin.id}",
-                      style: const TextStyle(color: Color(0xFF64748B), fontSize: 13),
+                      style: const TextStyle(
+                        color: Color(0xFF64748B),
+                        fontSize: 13,
+                      ),
                     ),
                   ],
                 ),
               ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 6,
+                ),
                 decoration: BoxDecoration(
                   color: statusColor.withOpacity(0.12),
                   borderRadius: BorderRadius.circular(20),
@@ -72,20 +82,30 @@ class BinDetailsBottomSheet extends StatelessWidget {
                 ),
                 child: Text(
                   bin.fillLevel,
-                  style: TextStyle(color: statusColor, fontWeight: FontWeight.bold, fontSize: 13),
+                  style: TextStyle(
+                    color: statusColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 13,
+                  ),
                 ),
               ),
             ],
           ),
           const Divider(height: 32),
-          
+
           // Location Details
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildLocationInfoTile("Latitude", bin.latitude.toStringAsFixed(6)),
+              _buildLocationInfoTile(
+                "Latitude",
+                bin.latitude.toStringAsFixed(6),
+              ),
               Container(height: 24, width: 1, color: const Color(0xFFE2E8F0)),
-              _buildLocationInfoTile("Longitude", bin.longitude.toStringAsFixed(6)),
+              _buildLocationInfoTile(
+                "Longitude",
+                bin.longitude.toStringAsFixed(6),
+              ),
             ],
           ),
           const SizedBox(height: 24),
@@ -93,13 +113,21 @@ class BinDetailsBottomSheet extends StatelessWidget {
           // Status Action Buttons
           const Text(
             "Change Fill Level Status",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Color(0xFF64748B)),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+              color: Color(0xFF64748B),
+            ),
           ),
           const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              _buildStatusActionButton(context, 'Empty', const Color(0xFF059669)),
+              _buildStatusActionButton(
+                context,
+                'Empty',
+                const Color(0xFF059669),
+              ),
               const SizedBox(width: 8),
               _buildStatusActionButton(context, 'Half-Filled', Colors.amber),
               const SizedBox(width: 8),
@@ -114,12 +142,20 @@ class BinDetailsBottomSheet extends StatelessWidget {
               Expanded(
                 child: OutlinedButton.icon(
                   onPressed: () => _reportFull(context),
-                  icon: const Icon(Icons.warning_amber_rounded, color: Colors.red),
-                  label: const Text("Report Full", style: TextStyle(color: Colors.red)),
+                  icon: const Icon(
+                    Icons.warning_amber_rounded,
+                    color: Colors.red,
+                  ),
+                  label: const Text(
+                    "Report Full",
+                    style: TextStyle(color: Colors.red),
+                  ),
                   style: OutlinedButton.styleFrom(
                     side: const BorderSide(color: Colors.red),
                     padding: const EdgeInsets.symmetric(vertical: 14),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
                 ),
               ),
@@ -133,7 +169,9 @@ class BinDetailsBottomSheet extends StatelessWidget {
                     backgroundColor: const Color(0xFF1E293B),
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(vertical: 14),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
                 ),
               ),
@@ -149,24 +187,41 @@ class BinDetailsBottomSheet extends StatelessWidget {
       children: [
         Text(
           label,
-          style: const TextStyle(fontSize: 12, color: Color(0xFF64748B), fontWeight: FontWeight.w500),
+          style: const TextStyle(
+            fontSize: 12,
+            color: Color(0xFF64748B),
+            fontWeight: FontWeight.w500,
+          ),
         ),
         const SizedBox(height: 4),
         Text(
           val,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF0F172A)),
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Color(0xFF0F172A),
+          ),
         ),
       ],
     );
   }
 
-  Widget _buildStatusActionButton(BuildContext context, String status, Color color) {
+  Widget _buildStatusActionButton(
+    BuildContext context,
+    String status,
+    Color color,
+  ) {
     return Expanded(
       child: OutlinedButton(
         onPressed: () => _changeBinStatus(context, status),
         style: OutlinedButton.styleFrom(
-          side: BorderSide(color: color, width: bin.fillLevel == status ? 2 : 1),
-          backgroundColor: bin.fillLevel == status ? color.withOpacity(0.08) : Colors.transparent,
+          side: BorderSide(
+            color: color,
+            width: bin.fillLevel == status ? 2 : 1,
+          ),
+          backgroundColor: bin.fillLevel == status
+              ? color.withOpacity(0.08)
+              : Colors.transparent,
           padding: const EdgeInsets.symmetric(vertical: 12),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
@@ -184,7 +239,7 @@ class BinDetailsBottomSheet extends StatelessWidget {
       return;
     }
     try {
-      final url = Uri.parse('http://127.0.0.1:8000/api/wastebins/${bin.id}/change_fill_level/');
+      final url = apiUri('wastebins/${bin.id}/change_fill_level/');
       final response = await http.put(
         url,
         headers: {"Content-Type": "application/json"},
@@ -206,7 +261,10 @@ class BinDetailsBottomSheet extends StatelessWidget {
     } catch (e) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Error updating bin: $e"), backgroundColor: Colors.red.shade700),
+          SnackBar(
+            content: Text("Error updating bin: $e"),
+            backgroundColor: Colors.red.shade700,
+          ),
         );
       }
     } finally {
@@ -218,7 +276,7 @@ class BinDetailsBottomSheet extends StatelessWidget {
 
   Future<void> _reportFull(BuildContext context) async {
     try {
-      final url = Uri.parse('http://127.0.0.1:8000/api/wastebins/${bin.id}/report_full/');
+      final url = apiUri('wastebins/${bin.id}/report_full/');
       final response = await http.post(url);
 
       if (response.statusCode == 200) {
@@ -238,7 +296,10 @@ class BinDetailsBottomSheet extends StatelessWidget {
     } catch (e) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Alert failed: $e"), backgroundColor: Colors.red.shade700),
+          SnackBar(
+            content: Text("Alert failed: $e"),
+            backgroundColor: Colors.red.shade700,
+          ),
         );
       }
     } finally {
@@ -254,7 +315,7 @@ class BinDetailsBottomSheet extends StatelessWidget {
       return;
     }
     try {
-      final url = Uri.parse('http://127.0.0.1:8000/api/wastebins/${bin.id}/');
+      final url = apiUri('wastebins/${bin.id}/');
       final response = await http.delete(url);
 
       if (response.statusCode == 204) {
@@ -272,7 +333,10 @@ class BinDetailsBottomSheet extends StatelessWidget {
     } catch (e) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Error: $e"), backgroundColor: Colors.red.shade700),
+          SnackBar(
+            content: Text("Error: $e"),
+            backgroundColor: Colors.red.shade700,
+          ),
         );
       }
     } finally {
@@ -307,7 +371,10 @@ class BinDetailsBottomSheet extends StatelessWidget {
             onPressed: () => Navigator.pop(context),
             child: const Text(
               "Dismiss",
-              style: TextStyle(color: Color(0xFF64748B), fontWeight: FontWeight.bold),
+              style: TextStyle(
+                color: Color(0xFF64748B),
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ],

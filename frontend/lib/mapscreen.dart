@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:latlong2/latlong.dart';
+import 'package:trash_map/api.dart';
 
 class MapScreen extends StatefulWidget {
   @override
@@ -20,27 +21,28 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   Future<void> _fetchWasteBins() async {
-    final response =
-        await http.get(Uri.parse('http://127.0.0.1:8000/api/wastebins/'));
+    final response = await http.get(apiUri('wastebins/'));
     if (response.statusCode == 200) {
       List<dynamic> bins = json.decode(response.body);
       setState(() {
         markers.clear();
         for (var bin in bins) {
-          markers.add(Marker(
-            point: LatLng(bin['latitude'], bin['longitude']),
-            width: 40.0,
-            height: 40.0,
-            child: Icon(
-              Icons.location_on,
-              color: bin['fill_level'] == 'Empty'
-                  ? Colors.green
-                  : bin['fill_level'] == 'Half-Filled'
-                      ? Colors.yellow
-                      : Colors.red,
-              size: 40.0,
+          markers.add(
+            Marker(
+              point: LatLng(bin['latitude'], bin['longitude']),
+              width: 40.0,
+              height: 40.0,
+              child: Icon(
+                Icons.location_on,
+                color: bin['fill_level'] == 'Empty'
+                    ? Colors.green
+                    : bin['fill_level'] == 'Half-Filled'
+                    ? Colors.yellow
+                    : Colors.red,
+                size: 40.0,
+              ),
             ),
-          ));
+          );
         }
       });
     }

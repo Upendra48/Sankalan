@@ -6,6 +6,7 @@ import 'package:trash_map/requestbin/user_form.dart';
 import 'package:trash_map/fohor/report_form.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:trash_map/api.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,7 +37,9 @@ class MyApp extends StatelessWidget {
           backgroundColor: const Color(0xFF0F172A), // Dark side rail
           indicatorColor: const Color(0xFF059669).withOpacity(0.24),
           selectedIconTheme: const IconThemeData(color: Color(0xFF34D399)),
-          unselectedIconTheme: const IconThemeData(color: Color(0xFF64748B)), // Slate-500 equivalent
+          unselectedIconTheme: const IconThemeData(
+            color: Color(0xFF64748B),
+          ), // Slate-500 equivalent
           selectedLabelTextStyle: const TextStyle(
             color: Color(0xFF34D399),
             fontWeight: FontWeight.bold,
@@ -77,10 +80,14 @@ class _HomePageState extends State<HomePage> {
   String? _currentUserName;
   String? _currentUserPhoto;
 
-  Future<void> _loginWithGoogle(String email, String name, String photoUrl) async {
+  Future<void> _loginWithGoogle(
+    String email,
+    String name,
+    String photoUrl,
+  ) async {
     try {
       final response = await http.post(
-        Uri.parse('http://127.0.0.1:8000/api/auth/google-login/'),
+        apiUri('auth/google-login/'),
         headers: {'Content-Type': 'application/json'},
         body: json.encode({
           'email': email,
@@ -99,26 +106,30 @@ class _HomePageState extends State<HomePage> {
           _currentUserEmail = user['email'];
           _currentUserName = user['name'];
           _currentUserPhoto = user['photo_url'];
-          
+
           AuthManager.isLoggedIn = _isLoggedIn;
           AuthManager.isVerified = _isVerified;
           AuthManager.currentUserEmail = _currentUserEmail;
           AuthManager.currentUserName = _currentUserName;
           AuthManager.currentUserPhoto = _currentUserPhoto;
         });
-        
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              _isVerified 
-                  ? "Welcome, $_currentUserName! Authenticated successfully." 
-                  : "Signed in as $_currentUserName. Pending administrator verification."
+              _isVerified
+                  ? "Welcome, $_currentUserName! Authenticated successfully."
+                  : "Signed in as $_currentUserName. Pending administrator verification.",
             ),
-            backgroundColor: _isVerified ? const Color(0xFF059669) : Colors.orange,
+            backgroundColor: _isVerified
+                ? const Color(0xFF059669)
+                : Colors.orange,
           ),
         );
       } else {
-        throw Exception("Failed to authenticate with backend: ${response.body}");
+        throw Exception(
+          "Failed to authenticate with backend: ${response.body}",
+        );
       }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -134,7 +145,7 @@ class _HomePageState extends State<HomePage> {
     if (_currentUserEmail == null) return;
     try {
       final response = await http.post(
-        Uri.parse('http://127.0.0.1:8000/api/auth/google-login/'),
+        apiUri('auth/google-login/'),
         headers: {'Content-Type': 'application/json'},
         body: json.encode({
           'email': _currentUserEmail,
@@ -149,18 +160,20 @@ class _HomePageState extends State<HomePage> {
         final user = data['user'];
         setState(() {
           _isVerified = user['is_verified'] ?? false;
-          
+
           AuthManager.isVerified = _isVerified;
         });
 
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              _isVerified 
-                  ? "Verification complete! Welcome to the Admin Console." 
-                  : "Verification status is still pending approval."
+              _isVerified
+                  ? "Verification complete! Welcome to the Admin Console."
+                  : "Verification status is still pending approval.",
             ),
-            backgroundColor: _isVerified ? const Color(0xFF059669) : Colors.orange,
+            backgroundColor: _isVerified
+                ? const Color(0xFF059669)
+                : Colors.orange,
           ),
         );
       }
@@ -177,7 +190,7 @@ class _HomePageState extends State<HomePage> {
       _currentUserName = null;
       _currentUserPhoto = null;
       _selectedIndex = 0; // Go back to dashboard
-      
+
       AuthManager.isLoggedIn = false;
       AuthManager.isVerified = false;
       AuthManager.currentUserEmail = null;
@@ -201,10 +214,16 @@ class _HomePageState extends State<HomePage> {
   Future<void> _fetchDashboardStats() async {
     setState(() => _statsLoading = true);
     try {
-      final analyticsResponse = await http.get(Uri.parse('http://127.0.0.1:8000/api/waste-bin-analytics/'));
-      final requestsResponse = await http.get(Uri.parse('http://127.0.0.1:8000/api/requests/'));
-      final reportsResponse = await http.get(Uri.parse('http://127.0.0.1:8000/api/report-waste/'));
-      final alertsResponse = await http.get(Uri.parse('http://127.0.0.1:8000/api/admin-notifications/'));
+      final analyticsResponse = await http.get(
+        Uri.parse(apiPath('waste-bin-analytics/')),
+      );
+      final requestsResponse = await http.get(Uri.parse(apiPath('requests/')));
+      final reportsResponse = await http.get(
+        Uri.parse(apiPath('report-waste/')),
+      );
+      final alertsResponse = await http.get(
+        Uri.parse(apiPath('admin-notifications/')),
+      );
 
       if (mounted) {
         setState(() {
@@ -252,13 +271,13 @@ class _HomePageState extends State<HomePage> {
       MapScreen(targetLat: _targetLat, targetLng: _targetLng),
       _isLoggedIn
           ? (_isVerified
-              ? AdminConsolePage(onLocateBin: _navigateToMapAndLocate)
-              : PendingVerificationPage(
-                  email: _currentUserEmail ?? "",
-                  name: _currentUserName ?? "",
-                  onCheckStatus: _checkVerification,
-                  onSignOut: _logout,
-                ))
+                ? AdminConsolePage(onLocateBin: _navigateToMapAndLocate)
+                : PendingVerificationPage(
+                    email: _currentUserEmail ?? "",
+                    name: _currentUserName ?? "",
+                    onCheckStatus: _checkVerification,
+                    onSignOut: _logout,
+                  ))
           : GoogleLoginPage(onLogin: _loginWithGoogle),
       AnalyticsPage(),
     ];
@@ -273,7 +292,11 @@ class _HomePageState extends State<HomePage> {
                 color: const Color(0xFF059669).withOpacity(0.2),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: const Icon(Icons.recycling_rounded, size: 24, color: Color(0xFF34D399)),
+              child: const Icon(
+                Icons.recycling_rounded,
+                size: 24,
+                color: Color(0xFF34D399),
+              ),
             ),
             const SizedBox(width: 12),
             const Column(
@@ -290,7 +313,11 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Text(
                   'Waste Collection Administration',
-                  style: TextStyle(fontSize: 10, color: Color(0xFF94A3B8), fontWeight: FontWeight.w500),
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: Color(0xFF94A3B8),
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ],
             ),
@@ -308,11 +335,19 @@ class _HomePageState extends State<HomePage> {
               icon: MouseRegion(
                 cursor: SystemMouseCursors.click,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
                     color: const Color(0xFF1E293B),
                     borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: _isVerified ? const Color(0xFF059669) : Colors.amber, width: 1.5),
+                    border: Border.all(
+                      color: _isVerified
+                          ? const Color(0xFF059669)
+                          : Colors.amber,
+                      width: 1.5,
+                    ),
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -320,17 +355,28 @@ class _HomePageState extends State<HomePage> {
                       CircleAvatar(
                         radius: 12,
                         backgroundColor: const Color(0xFF059669),
-                        backgroundImage: NetworkImage(_currentUserPhoto ?? 'https://www.gravatar.com/avatar/'),
+                        backgroundImage: NetworkImage(
+                          _currentUserPhoto ??
+                              'https://www.gravatar.com/avatar/',
+                        ),
                       ),
                       const SizedBox(width: 6),
                       Text(
                         _currentUserName ?? "Admin",
-                        style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold),
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       const SizedBox(width: 4),
                       Icon(
-                        _isVerified ? Icons.verified_user : Icons.hourglass_empty,
-                        color: _isVerified ? const Color(0xFF34D399) : Colors.amber,
+                        _isVerified
+                            ? Icons.verified_user
+                            : Icons.hourglass_empty,
+                        color: _isVerified
+                            ? const Color(0xFF34D399)
+                            : Colors.amber,
                         size: 14,
                       ),
                     ],
@@ -345,11 +391,17 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Text(
                         _currentUserName ?? "User",
-                        style: const TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF0F172A)),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF0F172A),
+                        ),
                       ),
                       Text(
                         _currentUserEmail ?? "",
-                        style: const TextStyle(fontSize: 11, color: Color(0xFF64748B)),
+                        style: const TextStyle(
+                          fontSize: 11,
+                          color: Color(0xFF64748B),
+                        ),
                       ),
                       const Divider(),
                     ],
@@ -378,7 +430,10 @@ class _HomePageState extends State<HomePage> {
             TextButton.icon(
               onPressed: _fetchDashboardStats,
               icon: const Icon(Icons.refresh, color: Colors.white, size: 18),
-              label: const Text("Refresh console", style: TextStyle(color: Colors.white)),
+              label: const Text(
+                "Refresh console",
+                style: TextStyle(color: Colors.white),
+              ),
             ),
             const SizedBox(width: 16),
           ],
@@ -472,12 +527,19 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         const Text(
                           "Welcome Back, Administrator",
-                          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFF0F172A)),
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF0F172A),
+                          ),
                         ),
                         const SizedBox(height: 4),
                         Text(
                           "Real-time metrics and operations hub for Pokhara Smart City.",
-                          style: const TextStyle(color: Color(0xFF64748B), fontSize: 14),
+                          style: const TextStyle(
+                            color: Color(0xFF64748B),
+                            fontSize: 14,
+                          ),
                         ),
                       ],
                     ),
@@ -497,10 +559,30 @@ class _HomePageState extends State<HomePage> {
                       childAspectRatio: 1.4,
                       physics: const NeverScrollableScrollPhysics(),
                       children: [
-                        _buildStatCard("Total Waste Bins", _totalBins.toString(), Icons.delete_outline, Colors.teal),
-                        _buildStatCard("Critical Full Bins", _fullBins.toString(), Icons.report_gmailerrorred_rounded, Colors.red),
-                        _buildStatCard("Pending Requests", _pendingRequests.toString(), Icons.add_location_outlined, Colors.amber),
-                        _buildStatCard("Waste Incidents", _unresolvedReports.toString(), Icons.warning_amber_outlined, Colors.orange),
+                        _buildStatCard(
+                          "Total Waste Bins",
+                          _totalBins.toString(),
+                          Icons.delete_outline,
+                          Colors.teal,
+                        ),
+                        _buildStatCard(
+                          "Critical Full Bins",
+                          _fullBins.toString(),
+                          Icons.report_gmailerrorred_rounded,
+                          Colors.red,
+                        ),
+                        _buildStatCard(
+                          "Pending Requests",
+                          _pendingRequests.toString(),
+                          Icons.add_location_outlined,
+                          Colors.amber,
+                        ),
+                        _buildStatCard(
+                          "Waste Incidents",
+                          _unresolvedReports.toString(),
+                          Icons.warning_amber_outlined,
+                          Colors.orange,
+                        ),
                       ],
                     );
                   },
@@ -525,7 +607,9 @@ class _HomePageState extends State<HomePage> {
                           backgroundColor: const Color(0xFF059669),
                           foregroundColor: Colors.white,
                           padding: const EdgeInsets.symmetric(vertical: 16),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                         ),
                       ),
                     ),
@@ -545,7 +629,9 @@ class _HomePageState extends State<HomePage> {
                           backgroundColor: Colors.orange.shade700,
                           foregroundColor: Colors.white,
                           padding: const EdgeInsets.symmetric(vertical: 16),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                         ),
                       ),
                     ),
@@ -556,7 +642,11 @@ class _HomePageState extends State<HomePage> {
                 // Alerts feed
                 const Text(
                   "Recent System Alerts Feed",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Color(0xFF0F172A)),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: Color(0xFF0F172A),
+                  ),
                 ),
                 const SizedBox(height: 12),
                 _recentAlerts.isEmpty
@@ -577,7 +667,9 @@ class _HomePageState extends State<HomePage> {
                     : ListView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        itemCount: _recentAlerts.length > 5 ? 5 : _recentAlerts.length,
+                        itemCount: _recentAlerts.length > 5
+                            ? 5
+                            : _recentAlerts.length,
                         itemBuilder: (context, index) {
                           final alert = _recentAlerts[index];
                           return Card(
@@ -586,15 +678,26 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.red.shade50.withOpacity(0.5),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
-                              side: BorderSide(color: Colors.red.shade200, width: 0.5),
+                              side: BorderSide(
+                                color: Colors.red.shade200,
+                                width: 0.5,
+                              ),
                             ),
                             child: ListTile(
-                              leading: const Icon(Icons.notification_important, color: Colors.red),
+                              leading: const Icon(
+                                Icons.notification_important,
+                                color: Colors.red,
+                              ),
                               title: Text(
                                 "Bin #${alert['waste_bin']} needs collection immediately",
-                                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14,
+                                ),
                               ),
-                              subtitle: Text("Status: Full | Reported at: ${alert['date_reported'] != null ? alert['date_reported'].substring(11, 16) : ''}"),
+                              subtitle: Text(
+                                "Status: Full | Reported at: ${alert['date_reported'] != null ? alert['date_reported'].substring(11, 16) : ''}",
+                              ),
                             ),
                           );
                         },
@@ -620,14 +723,22 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Text(
                   title,
-                  style: const TextStyle(color: Color(0xFF64748B), fontWeight: FontWeight.bold, fontSize: 13),
+                  style: const TextStyle(
+                    color: Color(0xFF64748B),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 13,
+                  ),
                 ),
                 Icon(icon, color: color, size: 24),
               ],
             ),
             Text(
               val,
-              style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w900, color: Color(0xFF0F172A)),
+              style: const TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.w900,
+                color: Color(0xFF0F172A),
+              ),
             ),
           ],
         ),
@@ -670,7 +781,9 @@ class GoogleLoginPage extends StatelessWidget {
           builder: (context, setDialogState) {
             return AlertDialog(
               backgroundColor: Colors.white,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
               title: Column(
                 children: [
                   Image.network(
@@ -697,7 +810,11 @@ class GoogleLoginPage extends StatelessWidget {
                   const SizedBox(height: 12),
                   const Text(
                     "Choose a Google account",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF0F172A)),
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF0F172A),
+                    ),
                   ),
                   const SizedBox(height: 4),
                   const Text(
@@ -721,12 +838,22 @@ class GoogleLoginPage extends StatelessWidget {
                           ),
                           title: Text(
                             account['name']!,
-                            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                            ),
                           ),
-                          subtitle: Text(account['email']!, style: const TextStyle(fontSize: 12)),
+                          subtitle: Text(
+                            account['email']!,
+                            style: const TextStyle(fontSize: 12),
+                          ),
                           onTap: () {
                             Navigator.pop(context);
-                            onLogin(account['email']!, account['name']!, account['photo']!);
+                            onLogin(
+                              account['email']!,
+                              account['name']!,
+                              account['photo']!,
+                            );
                           },
                         );
                       }).toList(),
@@ -734,11 +861,18 @@ class GoogleLoginPage extends StatelessWidget {
                       ListTile(
                         leading: const CircleAvatar(
                           backgroundColor: Color(0xFFF1F5F9),
-                          child: Icon(Icons.person_add_alt_1_outlined, color: Color(0xFF475569)),
+                          child: Icon(
+                            Icons.person_add_alt_1_outlined,
+                            color: Color(0xFF475569),
+                          ),
                         ),
                         title: const Text(
                           "Use another account",
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14, color: Color(0xFF475569)),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                            color: Color(0xFF475569),
+                          ),
                         ),
                         onTap: () {
                           // Show input fields for custom account
@@ -751,11 +885,15 @@ class GoogleLoginPage extends StatelessWidget {
                                 children: [
                                   TextField(
                                     controller: nameController,
-                                    decoration: const InputDecoration(labelText: "Full Name"),
+                                    decoration: const InputDecoration(
+                                      labelText: "Full Name",
+                                    ),
                                   ),
                                   TextField(
                                     controller: emailController,
-                                    decoration: const InputDecoration(labelText: "Google Email"),
+                                    decoration: const InputDecoration(
+                                      labelText: "Google Email",
+                                    ),
                                     keyboardType: TextInputType.emailAddress,
                                   ),
                                 ],
@@ -767,9 +905,14 @@ class GoogleLoginPage extends StatelessWidget {
                                 ),
                                 ElevatedButton(
                                   onPressed: () {
-                                    if (nameController.text.isNotEmpty && emailController.text.isNotEmpty) {
-                                      Navigator.pop(context); // close credentials dialog
-                                      Navigator.pop(context); // close chooser dialog
+                                    if (nameController.text.isNotEmpty &&
+                                        emailController.text.isNotEmpty) {
+                                      Navigator.pop(
+                                        context,
+                                      ); // close credentials dialog
+                                      Navigator.pop(
+                                        context,
+                                      ); // close chooser dialog
                                       onLogin(
                                         emailController.text.trim(),
                                         nameController.text.trim(),
@@ -810,7 +953,7 @@ class GoogleLoginPage extends StatelessWidget {
               color: Colors.black.withOpacity(0.05),
               blurRadius: 20,
               offset: const Offset(0, 10),
-            )
+            ),
           ],
           border: Border.all(color: const Color(0xFFF1F5F9)),
         ),
@@ -833,13 +976,21 @@ class GoogleLoginPage extends StatelessWidget {
             const SizedBox(height: 24),
             const Text(
               "Sankalan Admin Console",
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900, color: Color(0xFF0F172A)),
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w900,
+                color: Color(0xFF0F172A),
+              ),
             ),
             const SizedBox(height: 10),
             const Text(
               "Access is restricted to authorized operators. Please authenticate using your corporate Google Workspace account.",
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 13, color: Color(0xFF64748B), height: 1.5),
+              style: TextStyle(
+                fontSize: 13,
+                color: Color(0xFF64748B),
+                height: 1.5,
+              ),
             ),
             const SizedBox(height: 36),
             ElevatedButton(
@@ -922,7 +1073,7 @@ class PendingVerificationPage extends StatelessWidget {
               color: Colors.black.withOpacity(0.05),
               blurRadius: 20,
               offset: const Offset(0, 10),
-            )
+            ),
           ],
           border: Border.all(color: const Color(0xFFF1F5F9)),
         ),
@@ -945,18 +1096,30 @@ class PendingVerificationPage extends StatelessWidget {
             const SizedBox(height: 24),
             Text(
               "Verification Pending",
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900, color: Colors.amber.shade800),
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w900,
+                color: Colors.amber.shade800,
+              ),
             ),
             const SizedBox(height: 12),
             RichText(
               textAlign: TextAlign.center,
               text: TextSpan(
-                style: const TextStyle(fontSize: 13, color: Color(0xFF64748B), height: 1.5, fontFamily: 'Outfit'),
+                style: const TextStyle(
+                  fontSize: 13,
+                  color: Color(0xFF64748B),
+                  height: 1.5,
+                  fontFamily: 'Outfit',
+                ),
                 children: [
                   const TextSpan(text: "Hello "),
                   TextSpan(
                     text: name,
-                    style: const TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF0F172A)),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF0F172A),
+                    ),
                   ),
                   const TextSpan(text: " ("),
                   TextSpan(
@@ -964,7 +1127,8 @@ class PendingVerificationPage extends StatelessWidget {
                     style: const TextStyle(fontStyle: FontStyle.italic),
                   ),
                   const TextSpan(
-                    text: "). Your administrator request is pending approval. A backend administrator must verify your account in the Django Admin Console before access is granted.",
+                    text:
+                        "). Your administrator request is pending approval. A backend administrator must verify your account in the Django Admin Console before access is granted.",
                   ),
                 ],
               ),
@@ -978,7 +1142,9 @@ class PendingVerificationPage extends StatelessWidget {
                 backgroundColor: const Color(0xFF059669),
                 foregroundColor: Colors.white,
                 minimumSize: const Size.fromHeight(50),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
               ),
             ),
             const SizedBox(height: 12),
@@ -990,7 +1156,9 @@ class PendingVerificationPage extends StatelessWidget {
                 foregroundColor: Colors.red,
                 side: const BorderSide(color: Colors.red, width: 1.2),
                 minimumSize: const Size.fromHeight(50),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
               ),
             ),
           ],
@@ -1007,5 +1175,3 @@ class AuthManager {
   static String? currentUserName;
   static String? currentUserPhoto;
 }
-
-

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:trash_map/api.dart';
 import 'dart:convert';
 
 import 'package:trash_map/requestbin/request_bin.dart';
 
-
 Future<void> requestNewBin(RequestBin request) async {
-  final url = Uri.parse('http://127.0.0.1:8000/api/requests/');
+  final url = apiUri('requests/');
   try {
     final response = await http.post(
       url,
@@ -15,11 +15,9 @@ Future<void> requestNewBin(RequestBin request) async {
     );
 
     if (response.statusCode == 201) {
-      ScaffoldMessenger.of(request.context).showSnackBar(
-        SnackBar(
-          content: Text("Request submitted successfully"),
-        ),
-      );
+      ScaffoldMessenger.of(
+        request.context,
+      ).showSnackBar(SnackBar(content: Text("Request submitted successfully")));
       print("Request submitted successfully");
     } else {
       print("Failed to submit request: ${response.statusCode}");
