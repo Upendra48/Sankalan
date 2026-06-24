@@ -275,6 +275,7 @@ class _HomePageState extends State<HomePage> {
               ),
               child: const Icon(Icons.recycling_rounded, size: 24, color: Color(0xFF34D399)),
             ),
+            const SizedBox(width: 12),
             const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -288,7 +289,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 Text(
-                  'SaaS Waste Administration',
+                  'Waste Collection Administration',
                   style: TextStyle(fontSize: 10, color: Color(0xFF94A3B8), fontWeight: FontWeight.w500),
                 ),
               ],
