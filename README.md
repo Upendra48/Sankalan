@@ -93,7 +93,7 @@ Sankalan/
 
 ### Prerequisites
 
-- **Python 3.10+** (Backend)
+- **Python 3.12+** (Backend)
 - **Flutter 3.38.7+** (Frontend) - Supports all platforms (Web, Mobile, Desktop)
 - **Dart 3.10.7+** (Frontend)
 - **Docker** (Optional - for containerized deployment)
