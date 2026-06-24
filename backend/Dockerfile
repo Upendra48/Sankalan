@@ -24,5 +24,6 @@ COPY . /app/
 # Expose Django default port
 EXPOSE 8000
 
-# Command to run database migrations and start development server
-CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
+# Set production Django settings module and run migrations + collectstatic before starting app
+ENV DJANGO_SETTINGS_MODULE=trash_tracker_backend.production_settings
+CMD ["sh", "-c", "python manage.py collectstatic --noinput && python manage.py migrate && gunicorn trash_tracker_backend.wsgi:application --bind 0.0.0.0:8000"]

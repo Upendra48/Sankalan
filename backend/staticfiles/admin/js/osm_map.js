@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
   const latitudeInput = document.getElementById("id_latitude");
   const longitudeInput = document.getElementById("id_longitude");
+  
 
   // Default location (Pokhara as an example)
-  const defaultLocation = [parseFloat(latitudeInput.value) || 28.2096, parseFloat(longitudeInput.value) || 83.9856];
+  const defaultLocation = [parseFloat(latitudeInput.value) || 28.261336, parseFloat(longitudeInput.value) || 83.971944];
 
   // Create map container
   const mapContainer = document.createElement("div");
@@ -12,10 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
   mapContainer.style.marginTop = "10px";
 
   // Add map container to the form
-  latitudeInput.parentElement.appendChild(mapContainer);
+  longitudeInput.parentElement.appendChild(mapContainer);
 
   // Initialize the map
-  const map = L.map(mapContainer).setView(defaultLocation, 13);
+  const map = L.map(mapContainer).setView(defaultLocation, 16);
 
   // Add OpenStreetMap tiles
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
