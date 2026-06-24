@@ -6,12 +6,15 @@ import 'package:trash_map/bin/bin_fetch.dart';
 
 class BinMap extends StatelessWidget {
   final List<Bin> bins;
+  final List<LatLng>? routePoints;
+  final MapController? mapController;
 
-  const BinMap({super.key, required this.bins});
+  const BinMap({super.key, required this.bins, this.routePoints, this.mapController});
 
   @override
   Widget build(BuildContext context) {
     return FlutterMap(
+      mapController: mapController,
       options: MapOptions(
         initialCenter: LatLng(28.261336, 83.971944),
         initialZoom: 16,
@@ -21,6 +24,18 @@ class BinMap extends StatelessWidget {
           urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
           subdomains: ['a', 'b', 'c'],
         ),
+        if (routePoints != null && routePoints!.isNotEmpty)
+          PolylineLayer(
+            polylines: [
+              Polyline(
+                points: routePoints!,
+                strokeWidth: 4.0,
+                color: Colors.blue.shade600,
+                borderColor: Colors.blue.shade900,
+                borderStrokeWidth: 1.0,
+              ),
+            ],
+          ),
         MarkerLayer(
           markers: bins.map((bin) {
             Color markerColor = _getMarkerColor(bin.fillLevel);

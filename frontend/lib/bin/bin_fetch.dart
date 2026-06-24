@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class Bin {
@@ -30,6 +29,31 @@ class Bin {
   }
 }
 
+class OptimizedRoute {
+  final double startLat;
+  final double startLng;
+  final List<Bin> route;
+  final double totalDistance;
+
+  OptimizedRoute({
+    required this.startLat,
+    required this.startLng,
+    required this.route,
+    required this.totalDistance,
+  });
+
+  factory OptimizedRoute.fromJson(Map<String, dynamic> json) {
+    var routeList = json['route'] as List;
+    List<Bin> routeBins = routeList.map((item) => Bin.fromJson(item)).toList();
+    return OptimizedRoute(
+      startLat: double.tryParse(json['start_point']['latitude'].toString()) ?? 0.0,
+      startLng: double.tryParse(json['start_point']['longitude'].toString()) ?? 0.0,
+      route: routeBins,
+      totalDistance: double.tryParse(json['total_distance_km'].toString()) ?? 0.0,
+    );
+  }
+}
+
 Future<List<Bin>> fetchBins() async {
   final url = Uri.parse('http://127.0.0.1:8000/api/wastebins/');
   try {
@@ -49,3 +73,20 @@ Future<List<Bin>> fetchBins() async {
     throw Exception('Failed to connect to server');
   }
 }
+
+Future<OptimizedRoute> fetchOptimizedRoute(double startLat, double startLng) async {
+  final url = Uri.parse('http://127.0.0.1:8000/api/wastebins/optimized-route/?start_lat=$startLat&start_lng=$startLng');
+  try {
+    final response = await http.get(url);
+    if (response.statusCode == 200) {
+      Map<String, dynamic> data = json.decode(response.body);
+      return OptimizedRoute.fromJson(data);
+    } else {
+      throw Exception('Failed to load optimized route');
+    }
+  } catch (e) {
+    print('Error: $e');
+    throw Exception('Failed to connect to server');
+  }
+}
+

@@ -12,5 +12,6 @@ router.register(r'waste-bin-analytics', views.WasteBinAnalyticsViewSet, basename
 
 
 urlpatterns = [
+    path('auth/google-login/', views.google_login, name='google-login'),
     path('', include(router.urls))
 ]

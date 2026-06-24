@@ -3,7 +3,7 @@
   "packages": [
     {
       "name": "archive",
-      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/archive-4.0.7",
+      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/archive-4.0.9",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -15,7 +15,7 @@
     },
     {
       "name": "async",
-      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/async-2.13.0",
+      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/async-2.13.1",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -39,9 +39,9 @@
     },
     {
       "name": "code_assets",
-      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/code_assets-1.0.0",
+      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/code_assets-1.2.1",
       "packageUri": "lib/",
-      "languageVersion": "3.9"
+      "languageVersion": "3.10"
     },
     {
       "name": "collection",
@@ -51,15 +51,15 @@
     },
     {
       "name": "crypto",
-      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/crypto-3.0.6",
+      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/crypto-3.0.7",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
     {
       "name": "cupertino_icons",
-      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/cupertino_icons-1.0.8",
+      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/cupertino_icons-1.0.9",
       "packageUri": "lib/",
-      "languageVersion": "3.1"
+      "languageVersion": "3.9"
     },
     {
       "name": "dart_earcut",
@@ -75,7 +75,7 @@
     },
     {
       "name": "equatable",
-      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/equatable-2.0.7",
+      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/equatable-2.0.8",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -87,15 +87,9 @@
     },
     {
       "name": "ffi",
-      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/ffi-2.1.4",
+      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/ffi-2.2.0",
       "packageUri": "lib/",
       "languageVersion": "3.7"
-    },
-    {
-      "name": "file",
-      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/file-7.0.1",
-      "packageUri": "lib/",
-      "languageVersion": "3.0"
     },
     {
       "name": "fixnum",
@@ -105,9 +99,9 @@
     },
     {
       "name": "fl_chart",
-      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/fl_chart-0.69.2",
+      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/fl_chart-1.2.0",
       "packageUri": "lib/",
-      "languageVersion": "3.2"
+      "languageVersion": "3.6"
     },
     {
       "name": "flutter",
@@ -117,9 +111,9 @@
     },
     {
       "name": "flutter_lints",
-      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-4.0.0",
+      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_lints-6.0.0",
       "packageUri": "lib/",
-      "languageVersion": "3.1"
+      "languageVersion": "3.8"
     },
     {
       "name": "flutter_map",
@@ -134,20 +128,14 @@
       "languageVersion": "3.8"
     },
     {
-      "name": "glob",
-      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/glob-2.1.3",
-      "packageUri": "lib/",
-      "languageVersion": "3.3"
-    },
-    {
       "name": "hooks",
-      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/hooks-1.0.3",
+      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/hooks-2.0.2",
       "packageUri": "lib/",
       "languageVersion": "3.10"
     },
     {
       "name": "http",
-      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/http-1.5.0",
+      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/http-1.6.0",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -201,15 +189,9 @@
     },
     {
       "name": "lints",
-      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/lints-4.0.0",
+      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/lints-6.1.0",
       "packageUri": "lib/",
-      "languageVersion": "3.1"
-    },
-    {
-      "name": "lists",
-      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/lists-1.0.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "3.8"
     },
     {
       "name": "logging",
@@ -219,9 +201,9 @@
     },
     {
       "name": "lottie",
-      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/lottie-3.3.1",
+      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/lottie-3.3.3",
       "packageUri": "lib/",
-      "languageVersion": "3.6"
+      "languageVersion": "3.9"
     },
     {
       "name": "matcher",
@@ -243,19 +225,13 @@
     },
     {
       "name": "mgrs_dart",
-      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/mgrs_dart-2.0.0",
+      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/mgrs_dart-3.0.0",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
-      "name": "native_toolchain_c",
-      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/native_toolchain_c-0.17.6",
-      "packageUri": "lib/",
-      "languageVersion": "3.10"
+      "languageVersion": "3.0"
     },
     {
       "name": "objective_c",
-      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/objective_c-9.3.0",
+      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/objective_c-9.4.1",
       "packageUri": "lib/",
       "languageVersion": "3.10"
     },
@@ -273,9 +249,9 @@
     },
     {
       "name": "path_provider",
-      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider-2.1.5",
+      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider-2.1.6",
       "packageUri": "lib/",
-      "languageVersion": "3.4"
+      "languageVersion": "3.10"
     },
     {
       "name": "path_provider_android",
@@ -297,9 +273,9 @@
     },
     {
       "name": "path_provider_platform_interface",
-      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_platform_interface-2.1.2",
+      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_platform_interface-2.1.3",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.10"
     },
     {
       "name": "path_provider_windows",
@@ -321,15 +297,15 @@
     },
     {
       "name": "posix",
-      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/posix-6.0.3",
+      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/posix-6.5.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
       "name": "proj4dart",
-      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/proj4dart-2.1.0",
+      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/proj4dart-3.0.0",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "3.0"
     },
     {
       "name": "pub_semver",
@@ -344,6 +320,12 @@
       "languageVersion": "3.10"
     },
     {
+      "name": "simple_sparse_list",
+      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/simple_sparse_list-0.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "sky_engine",
       "rootUri": "file:///C:/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
@@ -351,7 +333,7 @@
     },
     {
       "name": "source_span",
-      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/source_span-1.10.1",
+      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/source_span-1.10.2",
       "packageUri": "lib/",
       "languageVersion": "3.1"
     },
@@ -393,9 +375,9 @@
     },
     {
       "name": "unicode",
-      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/unicode-0.3.1",
+      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/unicode-1.1.9",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "3.0"
     },
     {
       "name": "uuid",
@@ -411,9 +393,9 @@
     },
     {
       "name": "vm_service",
-      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/vm_service-15.0.0",
+      "rootUri": "file:///C:/Users/upend.LENOVO/AppData/Local/Pub/Cache/hosted/pub.dev/vm_service-15.2.0",
       "packageUri": "lib/",
-      "languageVersion": "3.3"
+      "languageVersion": "3.5"
     },
     {
       "name": "web",
