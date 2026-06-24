@@ -1,0 +1,20 @@
+{
+  "projectName": "trash-tracker-frontend",
+  "buildCommand": "flutter build web --release",
+  "outputDirectory": "build/web",
+  "installCommand": "flutter pub get",
+  "framework": "other",
+  "env": [
+    {
+      "key": "API_BASE_URL",
+      "value": "@api-base-url"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html",
+      "status": 200
+    }
+  ]
+}
