@@ -143,3 +143,8 @@ LOGGING = {
         'level': 'INFO',
     },
 }
+
+CSRF_TRUSTED_ORIGINS = config(
+    'CSRF_TRUSTED_ORIGINS',
+    default='https://sankalan.onrender.com'
+).split(',')
