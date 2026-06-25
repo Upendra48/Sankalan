@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -e
+
+if [ ! -d "$HOME/flutter" ]; then
+  curl -L https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.38.7-stable.tar.xz -o /tmp/flutter.tar.xz
+  mkdir -p "$HOME/flutter-sdk"
+  tar xf /tmp/flutter.tar.xz -C "$HOME/flutter-sdk"
+  mv "$HOME/flutter-sdk/flutter" "$HOME/flutter"
+fi
+
+export PATH="$PATH:$HOME/flutter/bin"
+git config --global --add safe.directory "$HOME/flutter"
+flutter config --no-analytics
+flutter pub get
