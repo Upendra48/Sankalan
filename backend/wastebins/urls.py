@@ -1,17 +1,21 @@
-from django.urls import path, include
+from django.urls import include, path
 from rest_framework.routers import DefaultRouter
-from .views import WasteBinViewSet, RequestViewSet, AdminNotificationViewSet, ReportWasteViewSet
-from . import views
+
+from .views import (
+    BinRequestViewSet,
+    CollectionRouteViewSet,
+    WasteBinAnalyticsViewSet,
+    WasteBinViewSet,
+    WasteReportViewSet,
+)
 
 router = DefaultRouter()
-router.register(r'wastebins', WasteBinViewSet)
-router.register(r'requests', RequestViewSet)
-router.register(r'admin-notifications', AdminNotificationViewSet)
-router.register(r'report-waste', ReportWasteViewSet)
-router.register(r'waste-bin-analytics', views.WasteBinAnalyticsViewSet, basename='waste-bin-analytics')
-
+router.register(r'waste-bins', WasteBinViewSet, basename='waste-bin')
+router.register(r'bin-requests', BinRequestViewSet, basename='bin-request')
+router.register(r'waste-reports', WasteReportViewSet, basename='waste-report')
+router.register(r'waste-bin-analytics', WasteBinAnalyticsViewSet, basename='waste-bin-analytics')
+router.register(r'collection-routes', CollectionRouteViewSet, basename='collection-route')
 
 urlpatterns = [
-    path('auth/google-login/', views.google_login, name='google-login'),
-    path('', include(router.urls))
+    path('', include(router.urls)),
 ]

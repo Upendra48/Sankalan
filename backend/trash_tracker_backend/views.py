@@ -1,62 +1,83 @@
-from django.views.generic import TemplateView
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
+from django.views.generic import TemplateView
 
 
 class APILandingView(TemplateView):
-    """Landing page for the Trash Tracker API"""
+    """Landing page for the Trash Tracker API."""
     template_name = 'api_landing.html'
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['api_endpoints'] = [
             {
+                'name': 'Auth Sessions',
+                'url': '/api/auth/sessions/',
+                'methods': ['POST'],
+                'description': 'Create a JWT session (Google sign-in)',
+            },
+            {
+                'name': 'Auth Me',
+                'url': '/api/auth/me/',
+                'methods': ['GET'],
+                'description': 'Get the authenticated user profile',
+            },
+            {
                 'name': 'Waste Bins',
-                'url': '/api/wastebins/',
-                'methods': ['GET', 'POST', 'PUT', 'DELETE'],
-                'description': 'Manage waste bins and their fill levels'
+                'url': '/api/waste-bins/',
+                'methods': ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+                'description': 'Manage waste bins; requires Bearer token',
             },
             {
-                'name': 'Requests',
-                'url': '/api/requests/',
-                'methods': ['GET', 'POST', 'PUT', 'DELETE'],
-                'description': 'Handle waste collection requests'
+                'name': 'Bin Requests',
+                'url': '/api/bin-requests/',
+                'methods': ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+                'description': 'Request new waste bins at a location',
             },
             {
-                'name': 'Admin Notifications',
-                'url': '/api/admin-notifications/',
-                'methods': ['GET', 'POST', 'PUT', 'DELETE'],
-                'description': 'Manage admin notifications for full bins'
-            },
-            {
-                'name': 'Report Waste',
-                'url': '/api/report-waste/',
-                'methods': ['GET', 'POST', 'PUT', 'DELETE'],
-                'description': 'Report waste incidents'
+                'name': 'Waste Reports',
+                'url': '/api/waste-reports/',
+                'methods': ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+                'description': 'Community waste incident reports',
             },
             {
                 'name': 'Waste Bin Analytics',
                 'url': '/api/waste-bin-analytics/',
                 'methods': ['GET'],
-                'description': 'Get statistics and analytics about waste bins'
+                'description': 'Aggregated statistics and insights',
+            },
+            {
+                'name': 'Collection Routes',
+                'url': '/api/collection-routes/',
+                'methods': ['GET'],
+                'description': 'Optimized collection routes (query: start_lat, start_lng)',
             },
         ]
         return context
 
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def api_root(request):
-    """API Root endpoint providing overview of available endpoints"""
+    """API root with HATEOAS links to all resource collections."""
+    base = request.build_absolute_uri('/api/')
     return Response({
-        'message': 'Welcome to Trash Tracker API',
-        'version': '1.0.0',
-        'endpoints': {
+        'data': {
+            'message': 'Welcome to Sankalan API',
+            'version': '2.0.0',
+        },
+        'links': {
+            'self': request.build_absolute_uri(),
+            'schema': request.build_absolute_uri('/api/schema/'),
+            'docs': request.build_absolute_uri('/api/docs/'),
+            'auth_sessions': f'{base}auth/sessions/',
+            'auth_me': f'{base}auth/me/',
+            'waste_bins': f'{base}waste-bins/',
+            'bin_requests': f'{base}bin-requests/',
+            'waste_reports': f'{base}waste-reports/',
+            'waste_bin_analytics': f'{base}waste-bin-analytics/',
+            'collection_routes': f'{base}collection-routes/',
             'admin': request.build_absolute_uri('/admin/'),
-            'api_docs': request.build_absolute_uri('/api/'),
-            'wastebins': request.build_absolute_uri('/api/wastebins/'),
-            'requests': request.build_absolute_uri('/api/requests/'),
-            'admin_notifications': request.build_absolute_uri('/api/admin-notifications/'),
-            'report_waste': request.build_absolute_uri('/api/report-waste/'),
-            'analytics': request.build_absolute_uri('/api/waste-bin-analytics/'),
-        }
+        },
     })
