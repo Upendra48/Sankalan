@@ -142,7 +142,7 @@ SIMPLE_JWT = {
 
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Sankalan API',
-    'DESCRIPTION': 'Smart waste management REST API',
+    'DESCRIPTION': 'Smart waste collection system REST API',
     'VERSION': '2.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
 }
