@@ -1,61 +1,97 @@
+from django.contrib.auth.models import User
+
 from rest_framework import status
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenRefreshView
 
 from wastebins.api_base import enveloped_response
 
-from .serializers import SessionCreateSerializer, SessionSerializer, UserSerializer
-from .services import get_or_create_google_user, serialize_user
+from .models import UserProfile
+from .serializers import (
+    RegisterSerializer,
+    LoginSerializer,
+    UserSerializer,
+)
+
+from .services import create_user_profile
 
 
-class SessionCreateView(APIView):
-    """POST /api/auth/sessions/ — create a JWT session (Google sign-in)."""
-
+class RegisterView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
-        input_serializer = SessionCreateSerializer(data=request.data)
-        input_serializer.is_valid(raise_exception=True)
+        serializer = RegisterSerializer(data=request.data)
 
-        user, profile = get_or_create_google_user(
-            email=input_serializer.validated_data['email'],
-            name=input_serializer.validated_data.get('name', ''),
-            google_id=input_serializer.validated_data.get('google_id', ''),
-            photo_url=input_serializer.validated_data.get('photo_url', ''),
-        )
+        if not serializer.is_valid():
+            return enveloped_response(
+                success=False,
+                errors=serializer.errors,
+                status_code=status.HTTP_400_BAD_REQUEST,
+            )
+
+        user = serializer.save()
+
+        create_user_profile(user)
 
         refresh = RefreshToken.for_user(user)
-        session_data = {
-            'access': str(refresh.access_token),
-            'refresh': str(refresh),
-            'user': serialize_user(user, profile),
-        }
-        output_serializer = SessionSerializer(session_data)
-        response = enveloped_response(request, output_serializer.data)
-        response.status_code = status.HTTP_201_CREATED
-        response['Location'] = request.build_absolute_uri()
-        return response
+
+        return enveloped_response(
+            success=True,
+            data={
+                "user": UserSerializer(user).data,
+                "tokens": {
+                    "access": str(refresh.access_token),
+                    "refresh": str(refresh),
+                },
+            },
+            status_code=status.HTTP_201_CREATED,
+        )
 
 
-class SessionRefreshView(TokenRefreshView):
-    """POST /api/auth/sessions/refresh/ — refresh an access token."""
-
+class LoginView(APIView):
     permission_classes = [AllowAny]
+
+    def post(self, request):
+        serializer = LoginSerializer(data=request.data)
+
+        if not serializer.is_valid():
+            return enveloped_response(
+                success=False,
+                errors=serializer.errors,
+                status_code=status.HTTP_400_BAD_REQUEST,
+            )
+
+        user = serializer.validated_data["user"]
+
+        refresh = RefreshToken.for_user(user)
+
+        return enveloped_response(
+            success=True,
+            data={
+                "user": UserSerializer(user).data,
+                "tokens": {
+                    "access": str(refresh.access_token),
+                    "refresh": str(refresh),
+                },
+            },
+            status_code=status.HTTP_200_OK,
+        )
 
 
 class CurrentUserView(APIView):
-    """GET /api/auth/me/ — return the authenticated user profile."""
-
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        user_data = serialize_user(request.user)
-        serializer = UserSerializer(user_data)
         return enveloped_response(
-            request,
-            serializer.data,
-            extra_links={'sessions': request.build_absolute_uri('/api/auth/sessions/')},
+            success=True,
+            data=UserSerializer(request.user).data,
+            status_code=status.HTTP_200_OK,
         )
+
+
+class SessionRefreshView(TokenRefreshView):
+    permission_classes = [AllowAny]

@@ -1,9 +1,15 @@
 from django.urls import path
 
-from .views import CurrentUserView, SessionCreateView, SessionRefreshView
+from .views import (
+    RegisterView,
+    LoginView,
+    CurrentUserView,
+    SessionRefreshView,
+)
 
 urlpatterns = [
-    path('sessions/', SessionCreateView.as_view(), name='auth-session-create'),
-    path('sessions/refresh/', SessionRefreshView.as_view(), name='auth-session-refresh'),
-    path('me/', CurrentUserView.as_view(), name='auth-current-user'),
+    path("register/", RegisterView.as_view(), name="register"),
+    path("login/", LoginView.as_view(), name="login"),
+    path("refresh/", SessionRefreshView.as_view(), name="token_refresh"),
+    path("me/", CurrentUserView.as_view(), name="current_user"),
 ]
