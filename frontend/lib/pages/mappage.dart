@@ -59,6 +59,12 @@ class _MapScreenState extends State<MapScreen> {
     super.dispose();
   }
 
+  void _reloadBins() {
+    setState(() {
+      futureBins = fetchBins();
+    });
+  }
+
   void _toggleRoute() async {
     if (showRoute) {
       setState(() {
@@ -256,6 +262,7 @@ class _MapScreenState extends State<MapScreen> {
                       bins: allBins,
                       routePoints: showRoute ? routePoints : null,
                       mapController: _mapController,
+                      onBinsChanged: _reloadBins,
                     ),
                   ),
                 ],
@@ -268,6 +275,7 @@ class _MapScreenState extends State<MapScreen> {
                     bins: allBins,
                     routePoints: showRoute ? routePoints : null,
                     mapController: _mapController,
+                    onBinsChanged: _reloadBins,
                   ),
                   Positioned(
                     top: 16,

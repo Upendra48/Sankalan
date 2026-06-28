@@ -8,8 +8,15 @@ class BinMap extends StatelessWidget {
   final List<Bin> bins;
   final List<LatLng>? routePoints;
   final MapController? mapController;
+  final VoidCallback? onBinsChanged;
 
-  const BinMap({super.key, required this.bins, this.routePoints, this.mapController});
+  const BinMap({
+    super.key,
+    required this.bins,
+    this.routePoints,
+    this.mapController,
+    this.onBinsChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +51,7 @@ class BinMap extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {
                   // Show bin details
-                  _onMarkerTap(context, bin);
+                  _onMarkerTap(context, bin, onBinsChanged);
                 },
                 child: Icon(
                   Icons.location_on,
@@ -73,11 +80,14 @@ Color _getMarkerColor(String fillLevel) {
   }
 }
 
-void _onMarkerTap(BuildContext context, Bin bin) {
+void _onMarkerTap(BuildContext context, Bin bin, VoidCallback? onBinsChanged) {
   showModalBottomSheet(
     context: context,
     builder: (context) {
-      return BinDetailsBottomSheet(bin: bin);
+      return BinDetailsBottomSheet(
+        bin: bin,
+        onUpdated: onBinsChanged,
+      );
     },
   );
 }

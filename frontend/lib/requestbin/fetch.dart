@@ -1,28 +1,30 @@
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:trash_map/api.dart';
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:trash_map/api.dart';
 import 'package:trash_map/requestbin/request_bin.dart';
 
 Future<void> requestNewBin(RequestBin request) async {
-  final url = apiUri('requests/');
   try {
-    final response = await http.post(
-      url,
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(request.toJson()),
+    final response = await apiPost(
+      'bin-requests/',
+      body: json.encode(request.toJson()),
     );
+    ApiClient.ensureSuccess(response);
 
-    if (response.statusCode == 201) {
-      ScaffoldMessenger.of(
-        request.context,
-      ).showSnackBar(SnackBar(content: Text("Request submitted successfully")));
-      print("Request submitted successfully");
-    } else {
-      print("Failed to submit request: ${response.statusCode}");
+    if (request.context.mounted) {
+      ScaffoldMessenger.of(request.context).showSnackBar(
+        const SnackBar(content: Text('Request submitted successfully')),
+      );
     }
   } catch (e) {
-    print("Error: $e");
+    if (request.context.mounted) {
+      ScaffoldMessenger.of(request.context).showSnackBar(
+        SnackBar(
+          content: Text('Failed to submit request: $e'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
   }
 }

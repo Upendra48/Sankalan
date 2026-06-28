@@ -1,0 +1,2094 @@
+[
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "auth",
+        "model": "user"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "wastebins",
+        "model": "request"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "wastebins",
+        "model": "wastebin"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "wastebins",
+        "model": "adminnotification"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "wastebins",
+        "model": "reportwaste"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "user_auth",
+        "model": "userprofile"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "7vovj9dtj1g7127ymm9xy4i47yhtev1e",
+    "fields": {
+        "session_data": ".eJxVjDsOwjAUBO_iGln-xQ6U9DmD9dYfHEC2FCcV4u4QKQW0OzP7Yp62tfitp8XPkV2YZKffDRQeqe4g3qneGg-trssMviv8oJ1PLabn9XD_Dgr18q0dhEGOsBR1lsopKdQIGxBNEOocMIZBkcmwGc4ZBz2QlcZaKCM1JHt_APWbN-I:1wJCPi:A5VCZPOD3OHwv9lkGFQOzxIiWxZ262b0dE0MzR7JLik",
+        "expire_date": "2026-05-16T15:37:54.279Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "b9of4iyee423wjph4q38mlqfb11o6m18",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQAP-FsyHdBUrx6L3fQHZ5SNXQpLQn478bkh70OjOZt_B07MUfLW1-ieIqlLj8MqbwTLWL-KB6X2VY674tLHsiT9vkvMb0up3t36BQK307EijCPMHgOJioshoA0ELMUQc3WpyUcUgcsmG0CJjRMWe0BjQ7LT5fzGc3NA:1wcyel:T3GLbiIVpRZvsRngAfdsB-DVaQZmIBqlKCJ9ugGuo6E",
+        "expire_date": "2026-07-10T04:59:11.953Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "nqixchkuzktlm3070ugv14tgye08uvyy",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQRe_C2hDQoYBL956hmRkGqRpISrsy3l2bdKHb_977LzXiupRx7TKPU1JnZdXhdyPkh9QNpDvWW9Pc6jJPpDdF77Tra0vyvOzu30HBXr61cyEj-xwJAMgTiEQk5uA82IGOiNmgcWw8OYoDWXMKNlMQn0wMAOr9Af7iODM:1tPOZ5:VMFFbFCTQ_62LTXCqUw_k4X3CEj4h1ZimC96BCOrcC8",
+        "expire_date": "2025-01-05T16:12:23.762Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "uyvdcjj9zeektx2rkhi5md4476kdz0nh",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQRe_C2hDQoYBL956hmRkGqRpISrsy3l2bdKHb_977LzXiupRx7TKPU1JnZdXhdyPkh9QNpDvWW9Pc6jJPpDdF77Tra0vyvOzu30HBXr61cyEj-xwJAMgTiEQk5uA82IGOiNmgcWw8OYoDWXMKNlMQn0wMAOr9Af7iODM:1tD6Ao:XlGPewlomxiuJxng8Z0DOX6IqUnwkoVOgYy6kR3OjJs",
+        "expire_date": "2024-12-02T18:08:30.377Z"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "x9rae371zcajxf0kc0by6vw0903pd4b9",
+    "fields": {
+        "session_data": ".eJxVjMsOwiAQRf-FtSE8ZACX7v0GMsNDqgaS0q6M_26bdKHbe865bxZwXWpYR57DlNiFSXb63QjjM7cdpAe2e-ext2WeiO8KP-jgt57y63q4fwcVR91qBO88ATmHWXmfNaBwsvhCqKiYIpOK9uysAdAgLeQojN4S7U0kXQT7fAHgtjds:1wcR5y:I8PjQZiXMUekH5PRjgMqTHmt0x28g67kjrs4ycF7uzE",
+        "expire_date": "2026-07-08T17:09:02.481Z"
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 8,
+    "fields": {
+        "name": "Bin_1",
+        "latitude": "28.261392000000000",
+        "longitude": "83.972239000000000",
+        "fill_level": "Empty",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 9,
+    "fields": {
+        "name": "Bin_2",
+        "latitude": "28.261128000000000",
+        "longitude": "83.972711000000000",
+        "fill_level": "Empty",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 10,
+    "fields": {
+        "name": "Bin_3",
+        "latitude": "28.260995000000000",
+        "longitude": "83.973204000000000",
+        "fill_level": "Empty",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 11,
+    "fields": {
+        "name": "Bin_4",
+        "latitude": "28.260976000000000",
+        "longitude": "83.973590000000000",
+        "fill_level": "Empty",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 12,
+    "fields": {
+        "name": "Bin_5",
+        "latitude": "28.260598000000000",
+        "longitude": "83.974062000000000",
+        "fill_level": "Full",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 13,
+    "fields": {
+        "name": "Bin_6",
+        "latitude": "28.260334000000000",
+        "longitude": "83.974427000000000",
+        "fill_level": "Empty",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 15,
+    "fields": {
+        "name": "Bin_8",
+        "latitude": "28.260031000000000",
+        "longitude": "83.974813000000000",
+        "fill_level": "Half-Filled",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 17,
+    "fields": {
+        "name": "Bin_10",
+        "latitude": "28.261827000000000",
+        "longitude": "83.972325000000000",
+        "fill_level": "Empty",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 19,
+    "fields": {
+        "name": "Bin_12",
+        "latitude": "28.262337000000000",
+        "longitude": "83.973054000000000",
+        "fill_level": "Empty",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 20,
+    "fields": {
+        "name": "Bin_13",
+        "latitude": "28.262526000000000",
+        "longitude": "83.973290000000000",
+        "fill_level": "Full",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 21,
+    "fields": {
+        "name": "Bin_14",
+        "latitude": "28.262167000000000",
+        "longitude": "83.973741000000000",
+        "fill_level": "Empty",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 22,
+    "fields": {
+        "name": "Bin_15",
+        "latitude": "28.261468000000000",
+        "longitude": "83.974191000000000",
+        "fill_level": "Half-Filled",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 23,
+    "fields": {
+        "name": "Bin_16",
+        "latitude": "28.260731000000000",
+        "longitude": "83.971832000000000",
+        "fill_level": "Empty",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 25,
+    "fields": {
+        "name": "Bin_18",
+        "latitude": "28.259597000000000",
+        "longitude": "83.972904000000000",
+        "fill_level": "Empty",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 26,
+    "fields": {
+        "name": "Bin_19",
+        "latitude": "28.259559000000000",
+        "longitude": "83.972711000000000",
+        "fill_level": "Empty",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 27,
+    "fields": {
+        "name": "Bin_20",
+        "latitude": "28.258746000000000",
+        "longitude": "83.973183000000000",
+        "fill_level": "Empty",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 28,
+    "fields": {
+        "name": "Bin_21",
+        "latitude": "28.259181000000000",
+        "longitude": "83.974170000000000",
+        "fill_level": "Empty",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 29,
+    "fields": {
+        "name": "Bin_22",
+        "latitude": "28.261846000000000",
+        "longitude": "83.971532000000000",
+        "fill_level": "Full",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 30,
+    "fields": {
+        "name": "Bin_23",
+        "latitude": "28.262356000000000",
+        "longitude": "83.970802000000000",
+        "fill_level": "Full",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 31,
+    "fields": {
+        "name": "Bin_24",
+        "latitude": "28.260239000000000",
+        "longitude": "83.972411000000000",
+        "fill_level": "Full",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 32,
+    "fields": {
+        "name": "Bin_25",
+        "latitude": "28.261014000000000",
+        "longitude": "83.971403000000000",
+        "fill_level": "Half-Filled",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 33,
+    "fields": {
+        "name": "Bin_26",
+        "latitude": "28.262696000000000",
+        "longitude": "83.972625000000000",
+        "fill_level": "Half-Filled",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 34,
+    "fields": {
+        "name": "Bin_9",
+        "latitude": "28.259521000000000",
+        "longitude": "83.975263000000000",
+        "fill_level": "Full",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 35,
+    "fields": {
+        "name": "Bin_abc",
+        "latitude": "28.262685440399600",
+        "longitude": "83.972750809257500",
+        "fill_level": "Empty",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 36,
+    "fields": {
+        "name": "Bin_101",
+        "latitude": "28.258992000000000",
+        "longitude": "83.973012000000000",
+        "fill_level": "Empty",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 37,
+    "fields": {
+        "name": "Bin_102",
+        "latitude": "28.258680000000000",
+        "longitude": "83.973698000000000",
+        "fill_level": "Empty",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 38,
+    "fields": {
+        "name": "Bin_103",
+        "latitude": "28.258992000000000",
+        "longitude": "83.974234000000000",
+        "fill_level": "Empty",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 39,
+    "fields": {
+        "name": "Bin_104",
+        "latitude": "28.259011000000000",
+        "longitude": "83.973784000000000",
+        "fill_level": "Empty",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 40,
+    "fields": {
+        "name": "Bin_105",
+        "latitude": "28.259379000000000",
+        "longitude": "83.973054000000000",
+        "fill_level": "Empty",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 41,
+    "fields": {
+        "name": "Bin_106",
+        "latitude": "28.259446000000000",
+        "longitude": "83.974405000000000",
+        "fill_level": "Empty",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 42,
+    "fields": {
+        "name": "Bin_Abc",
+        "latitude": "28.261884092650300",
+        "longitude": "83.971566345494600",
+        "fill_level": "Empty",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 43,
+    "fields": {
+        "name": "Bin_wrc",
+        "latitude": "28.256724000000000",
+        "longitude": "83.977391000000000",
+        "fill_level": "Full",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 44,
+    "fields": {
+        "name": "Bin_BIn WRC 2",
+        "latitude": "28.256552419043400",
+        "longitude": "83.977353663102600",
+        "fill_level": "Empty",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 45,
+    "fields": {
+        "name": "Bin_Path",
+        "latitude": "28.258043593632500",
+        "longitude": "83.976630356114700",
+        "fill_level": "Empty",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.wastebin",
+    "pk": 46,
+    "fields": {
+        "name": "Bin_check",
+        "latitude": "28.260326742512400",
+        "longitude": "83.970879699986800",
+        "fill_level": "Empty",
+        "status": true
+    }
+},
+{
+    "model": "wastebins.reportwaste",
+    "pk": 7,
+    "fields": {
+        "user_name": "Waste_",
+        "latitude": "28.257862149151800",
+        "longitude": "83.976561692611700",
+        "description": "Steel waste and plastic waste",
+        "date_reported": "2024-12-23T07:38:14.824Z"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "add_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "change_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "delete_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "view_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "add_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "change_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "delete_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "view_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "add_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "change_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "delete_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "view_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "add_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "change_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "delete_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "view_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "add_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "view_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "view_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add request",
+        "content_type": [
+            "wastebins",
+            "request"
+        ],
+        "codename": "add_request"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change request",
+        "content_type": [
+            "wastebins",
+            "request"
+        ],
+        "codename": "change_request"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete request",
+        "content_type": [
+            "wastebins",
+            "request"
+        ],
+        "codename": "delete_request"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view request",
+        "content_type": [
+            "wastebins",
+            "request"
+        ],
+        "codename": "view_request"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add waste bin",
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "codename": "add_wastebin"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change waste bin",
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "codename": "change_wastebin"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete waste bin",
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "codename": "delete_wastebin"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view waste bin",
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "codename": "view_wastebin"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add admin notification",
+        "content_type": [
+            "wastebins",
+            "adminnotification"
+        ],
+        "codename": "add_adminnotification"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change admin notification",
+        "content_type": [
+            "wastebins",
+            "adminnotification"
+        ],
+        "codename": "change_adminnotification"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete admin notification",
+        "content_type": [
+            "wastebins",
+            "adminnotification"
+        ],
+        "codename": "delete_adminnotification"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view admin notification",
+        "content_type": [
+            "wastebins",
+            "adminnotification"
+        ],
+        "codename": "view_adminnotification"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add report waste",
+        "content_type": [
+            "wastebins",
+            "reportwaste"
+        ],
+        "codename": "add_reportwaste"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change report waste",
+        "content_type": [
+            "wastebins",
+            "reportwaste"
+        ],
+        "codename": "change_reportwaste"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete report waste",
+        "content_type": [
+            "wastebins",
+            "reportwaste"
+        ],
+        "codename": "delete_reportwaste"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view report waste",
+        "content_type": [
+            "wastebins",
+            "reportwaste"
+        ],
+        "codename": "view_reportwaste"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add user profile",
+        "content_type": [
+            "user_auth",
+            "userprofile"
+        ],
+        "codename": "add_userprofile"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change user profile",
+        "content_type": [
+            "user_auth",
+            "userprofile"
+        ],
+        "codename": "change_userprofile"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete user profile",
+        "content_type": [
+            "user_auth",
+            "userprofile"
+        ],
+        "codename": "delete_userprofile"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view user profile",
+        "content_type": [
+            "user_auth",
+            "userprofile"
+        ],
+        "codename": "view_userprofile"
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$BuAsXu03JbYpAuBW9DIfC8$3B9E+F6g/bC+X+ai+ZB++KrpIcFu9C4OC7QilW0iER0=",
+        "last_login": "2026-06-24T13:27:06.057Z",
+        "is_superuser": true,
+        "username": "upendra",
+        "first_name": "",
+        "last_name": "",
+        "email": "upendraofficial10@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-11-18T18:08:08.134Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$W2U4kvoOONuzsQgMTedJO9$2+ufAPHwpgD4uNzw9n3QMe/AbkUVGBiK8uDaT3ySTQU=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "operator1@sankalan.gov.np",
+        "first_name": "Field Operator 1",
+        "last_name": "",
+        "email": "operator1@sankalan.gov.np",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-06-24T15:06:42Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "fields": {
+        "password": "pbkdf2_sha256$1200000$szhX09rwSjH5wsms9LpppG$Mk+/ltVIRUJgTYGxjxnC/DgMvcCb19zRSNp2EnKrdFw=",
+        "last_login": "2026-06-26T04:59:11.916Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2026-06-24T17:12:07Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2024-11-18T18:13:23.460Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "1",
+        "object_repr": "Bin at Latitude: 28.125, Longitude: 83.57278 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2024-11-19T06:11:11.931Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "3",
+        "object_repr": "Bin 'Bin_lamachaur' at Latitude: 28.2539, Longitude: 83.9764 - Half-Filled",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2024-11-19T15:28:32.793Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "4",
+        "object_repr": "Bin 'Bin_PN CAMPUS' at Latitude: 28.24, Longitude: 83.99 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2024-11-22T08:07:33.281Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "reportwaste"
+        ],
+        "object_id": "2",
+        "object_repr": "Reported by abc at Latitude: 28.209785304580500, Longitude: 83.985297446749700 on 2024-11-22 08:07:09.896991+00:00",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 5,
+    "fields": {
+        "action_time": "2024-11-22T08:07:33.281Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "reportwaste"
+        ],
+        "object_id": "1",
+        "object_repr": "Reported by Upendra at Latitude: 10.000000000000000, Longitude: 10.000000000000000 on 2024-11-22 07:58:26.791697+00:00",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 6,
+    "fields": {
+        "action_time": "2024-11-22T08:07:42.389Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "request"
+        ],
+        "object_id": "2",
+        "object_repr": "Bin 'abc' at Latitude: 28.210356344324700, Longitude: 83.985462672993900 - Pending, Reason: abc",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 7,
+    "fields": {
+        "action_time": "2024-11-23T07:17:13.874Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "7",
+        "object_repr": "Bin 'Bin_Lamachaur_chowk' at Latitude: 28.261593, Longitude: 83.971929 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 8,
+    "fields": {
+        "action_time": "2024-11-23T17:00:47.540Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "1",
+        "object_repr": "Bin 'Bin_Hallan_chowk' at Latitude: 28.125000000000000, Longitude: 83.572780000000000 - Empty",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 9,
+    "fields": {
+        "action_time": "2024-11-23T17:01:16.448Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "3",
+        "object_repr": "Bin 'Bin_lamachaur' at Latitude: 28.253900000000000, Longitude: 83.976400000000000 - Empty",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 10,
+    "fields": {
+        "action_time": "2024-11-23T17:02:16.373Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "7",
+        "object_repr": "Bin 'Bin_Lamachaur_chowk' at Latitude: 28.261593000000000, Longitude: 83.971929000000000 - Empty",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 11,
+    "fields": {
+        "action_time": "2024-11-23T17:02:16.373Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "6",
+        "object_repr": "Bin 'Bin_yuvraj' at Latitude: 28.261451000000000, Longitude: 83.972043000000000 - Empty",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 12,
+    "fields": {
+        "action_time": "2024-11-23T17:02:16.373Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "5",
+        "object_repr": "Bin 'Bin_Upendra' at Latitude: 28.254000000000000, Longitude: 83.977000000000000 - Full",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 13,
+    "fields": {
+        "action_time": "2024-11-23T17:02:16.373Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "4",
+        "object_repr": "Bin 'Bin_PN CAMPUS' at Latitude: 28.240000000000000, Longitude: 83.990000000000000 - Full",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 14,
+    "fields": {
+        "action_time": "2024-11-23T17:02:22.085Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "2",
+        "object_repr": "Bin 'Bin' at Latitude: 0E-15, Longitude: 0E-15 - Empty",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 15,
+    "fields": {
+        "action_time": "2024-11-23T17:02:53.219Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "8",
+        "object_repr": "Bin 'Bin_1' at Latitude: 28.261392, Longitude: 83.972239 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 16,
+    "fields": {
+        "action_time": "2024-11-23T17:03:07.955Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "9",
+        "object_repr": "Bin 'Bin_2' at Latitude: 28.261128, Longitude: 83.972711 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 17,
+    "fields": {
+        "action_time": "2024-11-23T17:03:21.929Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "10",
+        "object_repr": "Bin 'Bin_3' at Latitude: 28.260995, Longitude: 83.973204 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 18,
+    "fields": {
+        "action_time": "2024-11-23T17:03:32.477Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "11",
+        "object_repr": "Bin 'Bin_4' at Latitude: 28.260976, Longitude: 83.973590 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 19,
+    "fields": {
+        "action_time": "2024-11-23T17:03:43.087Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "12",
+        "object_repr": "Bin 'Bin_5' at Latitude: 28.260598, Longitude: 83.974062 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 20,
+    "fields": {
+        "action_time": "2024-11-23T17:03:51.565Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "13",
+        "object_repr": "Bin 'Bin_6' at Latitude: 28.260334, Longitude: 83.974427 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 21,
+    "fields": {
+        "action_time": "2024-11-23T17:04:01.035Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "14",
+        "object_repr": "Bin 'Bin_7' at Latitude: 28.260183, Longitude: 83.974598 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 22,
+    "fields": {
+        "action_time": "2024-11-23T17:04:14.424Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "15",
+        "object_repr": "Bin 'Bin_8' at Latitude: 28.260031, Longitude: 83.974813 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 23,
+    "fields": {
+        "action_time": "2024-11-23T17:04:22.481Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "16",
+        "object_repr": "Bin 'Bin_9' at Latitude: 28.259540, Longitude: 83.975478 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 24,
+    "fields": {
+        "action_time": "2024-11-23T17:04:54.089Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "17",
+        "object_repr": "Bin 'Bin_10' at Latitude: 28.261827, Longitude: 83.972325 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 25,
+    "fields": {
+        "action_time": "2024-11-23T17:05:02.860Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "18",
+        "object_repr": "Bin 'Bin_11' at Latitude: 28.262205, Longitude: 83.972840 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 26,
+    "fields": {
+        "action_time": "2024-11-23T17:05:10.675Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "19",
+        "object_repr": "Bin 'Bin_12' at Latitude: 28.262337, Longitude: 83.973054 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 27,
+    "fields": {
+        "action_time": "2024-11-23T17:05:20.327Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "20",
+        "object_repr": "Bin 'Bin_13' at Latitude: 28.262526, Longitude: 83.973290 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 28,
+    "fields": {
+        "action_time": "2024-11-23T17:05:30.732Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "21",
+        "object_repr": "Bin 'Bin_14' at Latitude: 28.262167, Longitude: 83.973741 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 29,
+    "fields": {
+        "action_time": "2024-11-23T17:05:41.587Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "22",
+        "object_repr": "Bin 'Bin_15' at Latitude: 28.261468, Longitude: 83.974191 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 30,
+    "fields": {
+        "action_time": "2024-11-23T17:08:16.880Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "23",
+        "object_repr": "Bin 'Bin_16' at Latitude: 28.260731, Longitude: 83.971832 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 31,
+    "fields": {
+        "action_time": "2024-11-23T17:08:30.972Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "24",
+        "object_repr": "Bin 'Bin_17' at Latitude: 28.259833, Longitude: 83.972433 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 32,
+    "fields": {
+        "action_time": "2024-11-23T17:08:41.006Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "25",
+        "object_repr": "Bin 'Bin_18' at Latitude: 28.259597, Longitude: 83.972904 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 33,
+    "fields": {
+        "action_time": "2024-11-23T17:08:48.095Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "26",
+        "object_repr": "Bin 'Bin_19' at Latitude: 28.259559, Longitude: 83.972711 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 34,
+    "fields": {
+        "action_time": "2024-11-23T17:08:57.489Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "27",
+        "object_repr": "Bin 'Bin_20' at Latitude: 28.258746, Longitude: 83.973183 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 35,
+    "fields": {
+        "action_time": "2024-11-23T17:09:12.089Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "28",
+        "object_repr": "Bin 'Bin_21' at Latitude: 28.259181, Longitude: 83.974170 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 36,
+    "fields": {
+        "action_time": "2024-11-23T17:23:26.865Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "reportwaste"
+        ],
+        "object_id": "3",
+        "object_repr": "Reported by yuvraj at Latitude: 28.256623745402000, Longitude: 83.977682779213500 on 2024-11-22 08:14:12.253327+00:00",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 37,
+    "fields": {
+        "action_time": "2024-11-23T17:24:23.501Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "29",
+        "object_repr": "Bin 'Bin_22' at Latitude: 28.261846, Longitude: 83.971532 - Half-Filled",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 38,
+    "fields": {
+        "action_time": "2024-11-23T17:24:31.705Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "30",
+        "object_repr": "Bin 'Bin_23' at Latitude: 28.262356, Longitude: 83.970802 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 39,
+    "fields": {
+        "action_time": "2024-11-23T17:24:54.930Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "31",
+        "object_repr": "Bin 'Bin_24' at Latitude: 28.260239, Longitude: 83.972411 - Half-Filled",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 40,
+    "fields": {
+        "action_time": "2024-11-23T17:26:27.800Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "32",
+        "object_repr": "Bin 'Bin_25' at Latitude: 28.261014, Longitude: 83.971403 - Half-Filled",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 41,
+    "fields": {
+        "action_time": "2024-11-23T17:26:39.508Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "33",
+        "object_repr": "Bin 'Bin_26' at Latitude: 28.262696, Longitude: 83.972625 - Half-Filled",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 42,
+    "fields": {
+        "action_time": "2024-11-23T17:28:18.101Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "14",
+        "object_repr": "Bin 'Bin_7' at Latitude: 28.260183000000000, Longitude: 83.974598000000000 - Empty",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 43,
+    "fields": {
+        "action_time": "2024-11-23T17:28:33.393Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "18",
+        "object_repr": "Bin 'Bin_11' at Latitude: 28.262205000000000, Longitude: 83.972840000000000 - Empty",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 44,
+    "fields": {
+        "action_time": "2024-11-23T17:28:45.528Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "24",
+        "object_repr": "Bin 'Bin_17' at Latitude: 28.259833000000000, Longitude: 83.972433000000000 - Empty",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 45,
+    "fields": {
+        "action_time": "2024-11-24T03:03:43.394Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "16",
+        "object_repr": "Bin 'Bin_9' at Latitude: 28.259540000000000, Longitude: 83.975478000000000 - Empty",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 46,
+    "fields": {
+        "action_time": "2024-11-24T03:04:10.659Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "34",
+        "object_repr": "Bin 'Bin_9' at Latitude: 28.259521, Longitude: 83.975263 - Half-Filled",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 47,
+    "fields": {
+        "action_time": "2024-12-23T02:09:12.476Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "36",
+        "object_repr": "Bin 'Bin_101' at Latitude: 28.258992, Longitude: 83.973012 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 48,
+    "fields": {
+        "action_time": "2024-12-23T02:09:25.050Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "37",
+        "object_repr": "Bin 'Bin_102' at Latitude: 28.258680, Longitude: 83.973698 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 49,
+    "fields": {
+        "action_time": "2024-12-23T02:09:41.138Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "38",
+        "object_repr": "Bin 'Bin_103' at Latitude: 28.258992, Longitude: 83.974234 - Full",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 50,
+    "fields": {
+        "action_time": "2024-12-23T02:10:07.565Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "39",
+        "object_repr": "Bin 'Bin_104' at Latitude: 28.259011, Longitude: 83.973784 - Full",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 51,
+    "fields": {
+        "action_time": "2024-12-23T02:11:42.032Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "40",
+        "object_repr": "Bin 'Bin_105' at Latitude: 28.259379, Longitude: 83.973054 - Full",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 52,
+    "fields": {
+        "action_time": "2024-12-23T02:12:56.497Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "41",
+        "object_repr": "Bin 'Bin_106' at Latitude: 28.259446, Longitude: 83.974405 - Full",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 53,
+    "fields": {
+        "action_time": "2024-12-23T07:35:55.378Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "wastebins",
+            "wastebin"
+        ],
+        "object_id": "43",
+        "object_repr": "Bin 'Bin_wrc' at Latitude: 28.256724, Longitude: 83.977391 - Empty",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 54,
+    "fields": {
+        "action_time": "2026-06-24T15:08:33.210Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "2",
+        "object_repr": "operator1@sankalan.gov.np",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 55,
+    "fields": {
+        "action_time": "2026-06-24T15:08:55.712Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "2",
+        "object_repr": "operator1@sankalan.gov.np",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Staff status\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 56,
+    "fields": {
+        "action_time": "2026-06-24T17:09:02.355Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "1",
+        "object_repr": "upendra",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"password\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 57,
+    "fields": {
+        "action_time": "2026-06-24T17:12:07.902Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "3",
+        "object_repr": "admin",
+        "action_flag": 1,
+        "change_message": "[{\"added\": {}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 58,
+    "fields": {
+        "action_time": "2026-06-24T17:12:18.011Z",
+        "user": [
+            "upendra"
+        ],
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "object_id": "3",
+        "object_repr": "admin",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Staff status\", \"Superuser status\"]}}]"
+    }
+}
+]

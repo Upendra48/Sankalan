@@ -7,6 +7,8 @@ from pathlib import Path
 import os
 from datetime import timedelta
 from decouple import config
+import dj_database_url
+
 
 # Build paths
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -71,12 +73,23 @@ TEMPLATES = [
 WSGI_APPLICATION = 'trash_tracker_backend.wsgi.application'
 
 # Database
+database_url = config(
+    "DATABASE_URL",
+    default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
+)
+
+print("=" * 60)
+print("DATABASE_URL =", database_url)
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    "default": dj_database_url.parse(
+        database_url,
+        conn_max_age=600,
+    )
 }
+
+print("DATABASES =", DATABASES)
+print("=" * 60)
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [

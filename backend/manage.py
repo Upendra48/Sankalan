@@ -4,6 +4,7 @@ import os
 import sys
 
 
+
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'trash_tracker_backend.production_settings')

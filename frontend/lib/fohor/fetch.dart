@@ -1,27 +1,30 @@
-import 'package:http/http.dart' as http;
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:trash_map/api.dart';
 import 'package:trash_map/fohor/fohor_here.dart';
 
 Future<void> requestNewFohor(Report_Fohor request) async {
-  final url = apiUri('report-waste/');
   try {
-    final response = await http.post(
-      url,
-      headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(request.toJson()),
+    final response = await apiPost(
+      'waste-reports/',
+      body: json.encode(request.toJson()),
     );
+    ApiClient.ensureSuccess(response);
 
-    if (response.statusCode == 201) {
-      ScaffoldMessenger.of(
-        request.context,
-      ).showSnackBar(SnackBar(content: Text("Report submitted successfully")));
-      print("Report submitted successfully");
-    } else {
-      print("Failed to submit request: ${response.statusCode}");
+    if (request.context.mounted) {
+      ScaffoldMessenger.of(request.context).showSnackBar(
+        const SnackBar(content: Text('Report submitted successfully')),
+      );
     }
   } catch (e) {
-    print("Error: $e");
+    if (request.context.mounted) {
+      ScaffoldMessenger.of(request.context).showSnackBar(
+        SnackBar(
+          content: Text('Failed to submit report: $e'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
   }
 }

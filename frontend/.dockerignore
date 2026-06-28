@@ -1,0 +1,15 @@
+# Ignore build outputs and temporary files
+build/
+.dart_tool/
+.packages
+.pub-cache
+.pub/
+*.lock
+*.log
+*.tmp
+*.swp
+.idea/
+.vscode/
+.git/
+metadata
+.DS_Store

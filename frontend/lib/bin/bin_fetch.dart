@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+
 import 'package:trash_map/api.dart';
 
 class Bin {
@@ -21,11 +21,9 @@ class Bin {
     return Bin(
       id: json['id'],
       name: json['name'],
-      // Convert latitude and longitude from String to double
       latitude: double.tryParse(json['latitude'].toString()) ?? 0.0,
       longitude: double.tryParse(json['longitude'].toString()) ?? 0.0,
-      // Assuming fill_level is an integer, adjust if necessary
-      fillLevel: json['fill_level'] ?? 0,
+      fillLevel: json['fill_level']?.toString() ?? 'Empty',
     );
   }
 }
@@ -44,14 +42,13 @@ class OptimizedRoute {
   });
 
   factory OptimizedRoute.fromJson(Map<String, dynamic> json) {
-    var routeList = json['route'] as List;
-    List<Bin> routeBins = routeList.map((item) => Bin.fromJson(item)).toList();
+    final routeList = json['route'] as List? ?? [];
     return OptimizedRoute(
       startLat:
           double.tryParse(json['start_point']['latitude'].toString()) ?? 0.0,
       startLng:
           double.tryParse(json['start_point']['longitude'].toString()) ?? 0.0,
-      route: routeBins,
+      route: routeList.map((item) => Bin.fromJson(item)).toList(),
       totalDistance:
           double.tryParse(json['total_distance_km'].toString()) ?? 0.0,
     );
@@ -59,42 +56,26 @@ class OptimizedRoute {
 }
 
 Future<List<Bin>> fetchBins() async {
-  final url = apiUri('wastebins/');
-  try {
-    final response = await http.get(url);
-
-    print('Status Code: ${response.statusCode}');
-    print('Response Body: ${response.body}');
-
-    if (response.statusCode == 200) {
-      List jsonResponse = json.decode(response.body);
-      return jsonResponse.map((bin) => Bin.fromJson(bin)).toList();
-    } else {
-      throw Exception('Failed to load bins');
-    }
-  } catch (e) {
-    print('Error: $e');
-    throw Exception('Failed to connect to server');
-  }
+  final response = await apiGet('waste-bins/');
+  ApiClient.ensureSuccess(response);
+  return unwrapList(response).map((bin) => Bin.fromJson(bin)).toList();
 }
 
 Future<OptimizedRoute> fetchOptimizedRoute(
   double startLat,
   double startLng,
 ) async {
-  final url = apiUri(
-    'wastebins/optimized-route/?start_lat=$startLat&start_lng=$startLng',
+  final response = await apiGet(
+    'collection-routes/?start_lat=$startLat&start_lng=$startLng',
   );
-  try {
-    final response = await http.get(url);
-    if (response.statusCode == 200) {
-      Map<String, dynamic> data = json.decode(response.body);
-      return OptimizedRoute.fromJson(data);
-    } else {
-      throw Exception('Failed to load optimized route');
-    }
-  } catch (e) {
-    print('Error: $e');
-    throw Exception('Failed to connect to server');
-  }
+  ApiClient.ensureSuccess(response);
+  return OptimizedRoute.fromJson(unwrapMap(response));
+}
+
+Future<void> updateBinFillLevel(int binId, String fillLevel) async {
+  final response = await apiPatch(
+    'waste-bins/$binId/',
+    body: json.encode({'fill_level': fillLevel}),
+  );
+  ApiClient.ensureSuccess(response);
 }
