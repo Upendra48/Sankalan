@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:trash_map/api.dart';
 import 'package:trash_map/requestbin/request_bin.dart';
 
-Future<void> requestNewBin(RequestBin request) async {
+Future<bool> requestNewBin(RequestBin request) async {
   try {
     final response = await apiPost(
       'bin-requests/',
@@ -17,6 +17,7 @@ Future<void> requestNewBin(RequestBin request) async {
         const SnackBar(content: Text('Request submitted successfully')),
       );
     }
+    return true;
   } catch (e) {
     if (request.context.mounted) {
       ScaffoldMessenger.of(request.context).showSnackBar(
@@ -26,5 +27,6 @@ Future<void> requestNewBin(RequestBin request) async {
         ),
       );
     }
+    return false;
   }
 }

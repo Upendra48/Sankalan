@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:trash_map/api.dart';
 import 'package:trash_map/fohor/fohor_here.dart';
 
-Future<void> requestNewFohor(Report_Fohor request) async {
+Future<bool> requestNewFohor(Report_Fohor request) async {
   try {
     final response = await apiPost(
       'waste-reports/',
@@ -17,6 +17,7 @@ Future<void> requestNewFohor(Report_Fohor request) async {
         const SnackBar(content: Text('Report submitted successfully')),
       );
     }
+    return true;
   } catch (e) {
     if (request.context.mounted) {
       ScaffoldMessenger.of(request.context).showSnackBar(
@@ -26,5 +27,6 @@ Future<void> requestNewFohor(Report_Fohor request) async {
         ),
       );
     }
+    return false;
   }
 }

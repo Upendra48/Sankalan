@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:trash_map/auth/auth_service.dart';
 import 'package:trash_map/requestbin/fetch.dart';
 import 'package:trash_map/requestbin/request_bin.dart';
 
 class RequestBinForm extends StatefulWidget {
+  const RequestBinForm({super.key});
+
   @override
   State<RequestBinForm> createState() => _RequestBinFormState();
 }
@@ -16,6 +19,56 @@ class _RequestBinFormState extends State<RequestBinForm> {
   final TextEditingController reasonController = TextEditingController();
 
   LatLng? selectedLocation;
+  bool isSubmitting = false;
+
+  @override
+  void initState() {
+    super.initState();
+    userNameController.text = AuthService.instance.displayName;
+  }
+
+  @override
+  void dispose() {
+    userNameController.dispose();
+    latitudeController.dispose();
+    longitudeController.dispose();
+    reasonController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _submit() async {
+    final latitude = double.tryParse(latitudeController.text.trim());
+    final longitude = double.tryParse(longitudeController.text.trim());
+
+    if (userNameController.text.trim().isEmpty ||
+        latitude == null ||
+        longitude == null ||
+        reasonController.text.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Add a name, valid map location, and reason.'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
+
+    setState(() => isSubmitting = true);
+
+    final request = RequestBin(
+      userName: userNameController.text.trim(),
+      latitude: latitude,
+      longitude: longitude,
+      reason: reasonController.text.trim(),
+      context: context,
+    );
+
+    final success = await requestNewBin(request);
+
+    if (!mounted) return;
+    setState(() => isSubmitting = false);
+    if (success) Navigator.pop(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +106,8 @@ class _RequestBinFormState extends State<RequestBinForm> {
               height: 300, // Small map box
               child: FlutterMap(
                 options: MapOptions(
-                  initialCenter: LatLng(28.261336, 83.971944), 
-                  initialZoom: 16,// Default location
+                  initialCenter: LatLng(28.261336, 83.971944),
+                  initialZoom: 16, // Default location
                   onTap: (tapPosition, point) {
                     setState(() {
                       selectedLocation = point;
@@ -74,7 +127,7 @@ class _RequestBinFormState extends State<RequestBinForm> {
                       markers: [
                         Marker(
                           point: selectedLocation!,
-                          child:  Icon(
+                          child: Icon(
                             Icons.location_on,
                             color: Colors.blue,
                             size: 30,
@@ -87,20 +140,14 @@ class _RequestBinFormState extends State<RequestBinForm> {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                final request = RequestBin(
-                  userName: userNameController.text,
-                  latitude: double.parse(latitudeController.text),
-                  longitude: double.parse(longitudeController.text),
-                  reason: reasonController.text,
-                  context: context,
-                );
-
-                requestNewBin(request).then((_) {
-                  Navigator.pop(context);
-                });
-              },
-              child: const Text("Submit"),
+              onPressed: isSubmitting ? null : _submit,
+              child: isSubmitting
+                  ? const SizedBox(
+                      height: 18,
+                      width: 18,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  : const Text("Submit"),
             ),
           ],
         ),

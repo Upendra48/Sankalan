@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:trash_map/auth/auth_service.dart';
 import 'package:trash_map/fohor/fetch.dart';
 import 'package:trash_map/fohor/fohor_here.dart';
 
-
 class ReportFohor extends StatefulWidget {
+  const ReportFohor({super.key});
+
   @override
   State<ReportFohor> createState() => _ReportFohorState();
 }
-
 
 class _ReportFohorState extends State<ReportFohor> {
   final TextEditingController userNameController = TextEditingController();
@@ -18,6 +19,56 @@ class _ReportFohorState extends State<ReportFohor> {
   final TextEditingController descriptionController = TextEditingController();
 
   LatLng? selectedLocation;
+  bool isSubmitting = false;
+
+  @override
+  void initState() {
+    super.initState();
+    userNameController.text = AuthService.instance.displayName;
+  }
+
+  @override
+  void dispose() {
+    userNameController.dispose();
+    latitudeController.dispose();
+    longitudeController.dispose();
+    descriptionController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _submit() async {
+    final latitude = double.tryParse(latitudeController.text.trim());
+    final longitude = double.tryParse(longitudeController.text.trim());
+
+    if (userNameController.text.trim().isEmpty ||
+        latitude == null ||
+        longitude == null ||
+        descriptionController.text.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Add a name, valid map location, and description.'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      return;
+    }
+
+    setState(() => isSubmitting = true);
+
+    final request = Report_Fohor(
+      userName: userNameController.text.trim(),
+      latitude: latitude,
+      longitude: longitude,
+      description: descriptionController.text.trim(),
+      context: context,
+    );
+
+    final success = await requestNewFohor(request);
+
+    if (!mounted) return;
+    setState(() => isSubmitting = false);
+    if (success) Navigator.pop(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +106,7 @@ class _ReportFohorState extends State<ReportFohor> {
               height: 300, // Small map box
               child: FlutterMap(
                 options: MapOptions(
-                  initialCenter: LatLng(28.261336, 83.971944), 
+                  initialCenter: LatLng(28.261336, 83.971944),
                   initialZoom: 16,
                   onTap: (tapPosition, point) {
                     setState(() {
@@ -89,20 +140,14 @@ class _ReportFohorState extends State<ReportFohor> {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                final Report_Fohor request = Report_Fohor(
-                  userName: userNameController.text,
-                  latitude: double.parse(latitudeController.text),
-                  longitude: double.parse(longitudeController.text),
-                  description: descriptionController.text,
-                  context: context,
-                );
-
-                requestNewFohor(request).then((_) {
-                  Navigator.pop(context);
-                });
-              },
-              child: const Text("Report Fohor"),
+              onPressed: isSubmitting ? null : _submit,
+              child: isSubmitting
+                  ? const SizedBox(
+                      height: 18,
+                      width: 18,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  : const Text("Report Fohor"),
             ),
           ],
         ),

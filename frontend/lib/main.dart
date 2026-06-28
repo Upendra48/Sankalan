@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trash_map/api.dart';
+import 'package:trash_map/auth/auth_page.dart';
 import 'package:trash_map/auth/auth_service.dart';
 import 'package:trash_map/fohor/report_form.dart';
 import 'package:trash_map/pages/analyticspage.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         ),
         navigationRailTheme: NavigationRailThemeData(
           backgroundColor: const Color(0xFF0F172A),
-          indicatorColor: const Color(0xFF059669).withOpacity(0.24),
+          indicatorColor: const Color(0xFF059669).withValues(alpha: 0.24),
           selectedIconTheme: const IconThemeData(color: Color(0xFF34D399)),
           unselectedIconTheme: const IconThemeData(color: Color(0xFF64748B)),
           selectedLabelTextStyle: const TextStyle(
@@ -72,37 +73,6 @@ class _AuthGateState extends State<AuthGate> {
     }
   }
 
-  Future<void> _handleLogin(
-    String email,
-    String name,
-    String photoUrl,
-  ) async {
-    final success = await AuthService.instance.loginWithGoogle(
-      email: email,
-      name: name,
-      photoUrl: photoUrl,
-    );
-
-    if (!mounted) return;
-
-    if (success) {
-      setState(() {});
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Welcome, ${AuthService.instance.currentUserName}!'),
-          backgroundColor: const Color(0xFF059669),
-        ),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Authentication failed. Please try again.'),
-          backgroundColor: Colors.red,
-        ),
-      );
-    }
-  }
-
   Future<void> _handleLogout() async {
     await AuthService.instance.logout();
     if (mounted) setState(() {});
@@ -111,13 +81,11 @@ class _AuthGateState extends State<AuthGate> {
   @override
   Widget build(BuildContext context) {
     if (_loading) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
 
     if (!AuthService.instance.isLoggedIn) {
-      return GoogleLoginPage(onLogin: _handleLogin);
+      return AuthPage(onAuthSuccess: () => setState(() {}));
     }
 
     return HomePage(onLogout: _handleLogout);
@@ -185,7 +153,7 @@ class _HomePageState extends State<HomePage> {
     final isMobile = MediaQuery.of(context).size.width < 700;
 
     final pages = [
-      _buildDashboardHub(auth.currentUserName ?? 'User'),
+      _buildDashboardHub(auth.displayName),
       MapScreen(targetLat: _targetLat, targetLng: _targetLng),
       AnalyticsPage(),
     ];
@@ -197,7 +165,7 @@ class _HomePageState extends State<HomePage> {
             Container(
               padding: const EdgeInsets.all(6),
               decoration: BoxDecoration(
-                color: const Color(0xFF059669).withOpacity(0.2),
+                color: const Color(0xFF059669).withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: const Icon(
@@ -249,7 +217,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  auth.currentUserName ?? 'User',
+                  auth.displayName,
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 12,
@@ -266,7 +234,7 @@ class _HomePageState extends State<HomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      auth.currentUserName ?? 'User',
+                      auth.displayName,
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     Text(
@@ -441,7 +409,7 @@ class _HomePageState extends State<HomePage> {
                           showModalBottomSheet(
                             context: context,
                             isScrollControlled: true,
-                            builder: (context) => RequestBinForm(),
+                            builder: (context) => const RequestBinForm(),
                           ).then((_) => _fetchDashboardStats());
                         },
                         icon: const Icon(Icons.add_location_alt_rounded),
@@ -463,7 +431,7 @@ class _HomePageState extends State<HomePage> {
                           showModalBottomSheet(
                             context: context,
                             isScrollControlled: true,
-                            builder: (context) => ReportFohor(),
+                            builder: (context) => const ReportFohor(),
                           ).then((_) => _fetchDashboardStats());
                         },
                         icon: const Icon(Icons.report_gmailerrorred_rounded),
@@ -491,8 +459,10 @@ class _HomePageState extends State<HomePage> {
                     ),
                     child: Row(
                       children: [
-                        Icon(Icons.warning_amber_rounded,
-                            color: Colors.red.shade700),
+                        Icon(
+                          Icons.warning_amber_rounded,
+                          color: Colors.red.shade700,
+                        ),
                         const SizedBox(width: 12),
                         Expanded(
                           child: Text(
@@ -509,12 +479,7 @@ class _HomePageState extends State<HomePage> {
           );
   }
 
-  Widget _buildStatCard(
-    String title,
-    String val,
-    IconData icon,
-    Color color,
-  ) {
+  Widget _buildStatCard(String title, String val, IconData icon, Color color) {
     return Card(
       elevation: 2,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -548,200 +513,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class GoogleLoginPage extends StatelessWidget {
-  final Future<void> Function(String email, String name, String photoUrl)
-      onLogin;
-
-  const GoogleLoginPage({super.key, required this.onLogin});
-
-  void _showAccountChooser(BuildContext context) {
-    final mockAccounts = [
-      {
-        'name': 'Community User',
-        'email': 'user@sankalan.gov.np',
-        'photo': 'https://api.dicebear.com/7.x/avataaars/png?seed=user',
-      },
-      {
-        'name': 'Field Reporter',
-        'email': 'reporter@sankalan.org',
-        'photo': 'https://api.dicebear.com/7.x/avataaars/png?seed=reporter',
-      },
-    ];
-
-    showDialog(
-      context: context,
-      builder: (context) {
-        final nameController = TextEditingController();
-        final emailController = TextEditingController();
-
-        return AlertDialog(
-          backgroundColor: Colors.white,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          title: const Text(
-            'Sign in to Sankalan',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          content: SizedBox(
-            width: 360,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ...mockAccounts.map((account) {
-                  return ListTile(
-                    leading: CircleAvatar(
-                      backgroundImage: NetworkImage(account['photo']!),
-                    ),
-                    title: Text(account['name']!),
-                    subtitle: Text(account['email']!),
-                    onTap: () {
-                      Navigator.pop(context);
-                      onLogin(
-                        account['email']!,
-                        account['name']!,
-                        account['photo']!,
-                      );
-                    },
-                  );
-                }),
-                const Divider(),
-                ListTile(
-                  leading: const CircleAvatar(
-                    child: Icon(Icons.person_add_alt_1_outlined),
-                  ),
-                  title: const Text('Use another account'),
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) => AlertDialog(
-                        title: const Text('Enter your details'),
-                        content: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            TextField(
-                              controller: nameController,
-                              decoration: const InputDecoration(
-                                labelText: 'Full Name',
-                              ),
-                            ),
-                            TextField(
-                              controller: emailController,
-                              decoration: const InputDecoration(
-                                labelText: 'Email',
-                              ),
-                              keyboardType: TextInputType.emailAddress,
-                            ),
-                          ],
-                        ),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(context),
-                            child: const Text('Cancel'),
-                          ),
-                          ElevatedButton(
-                            onPressed: () {
-                              if (nameController.text.isNotEmpty &&
-                                  emailController.text.isNotEmpty) {
-                                Navigator.pop(context);
-                                Navigator.pop(context);
-                                onLogin(
-                                  emailController.text.trim(),
-                                  nameController.text.trim(),
-                                  'https://api.dicebear.com/7.x/avataaars/png?seed=${emailController.text}',
-                                );
-                              }
-                            },
-                            child: const Text('Sign In'),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFF8FAFC),
-      body: Center(
-        child: Container(
-          constraints: const BoxConstraints(maxWidth: 450),
-          margin: const EdgeInsets.all(24),
-          padding: const EdgeInsets.all(40),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(24),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.05),
-                blurRadius: 20,
-                offset: const Offset(0, 10),
-              ),
-            ],
-            border: Border.all(color: const Color(0xFFF1F5F9)),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF059669).withOpacity(0.1),
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(
-                  Icons.recycling_rounded,
-                  size: 56,
-                  color: Color(0xFF059669),
-                ),
-              ),
-              const SizedBox(height: 24),
-              const Text(
-                'Welcome to Sankalan',
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w900,
-                  color: Color(0xFF0F172A),
-                ),
-              ),
-              const SizedBox(height: 10),
-              const Text(
-                'Sign in to view waste bins, report issues, and track community analytics.',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 13,
-                  color: Color(0xFF64748B),
-                  height: 1.5,
-                ),
-              ),
-              const SizedBox(height: 36),
-              ElevatedButton.icon(
-                onPressed: () => _showAccountChooser(context),
-                icon: const Icon(Icons.login),
-                label: const Text('Sign in with Google'),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF059669),
-                  foregroundColor: Colors.white,
-                  minimumSize: const Size.fromHeight(50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-              ),
-            ],
-          ),
         ),
       ),
     );
