@@ -10,7 +10,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
-RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
+
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
@@ -21,5 +23,4 @@ ENV DJANGO_SETTINGS_MODULE=trash_tracker_backend.production_settings
 CMD sh -c "\
 python manage.py collectstatic --noinput && \
 python manage.py migrate && \
-python manage.py createsuperuser --noinput || true && \
-gunicorn trash_tracker_backend.wsgi:application --bind 0.0.0.0:8000"
+gunicorn trash_tracker_backend.wsgi:application --bind 0.0.0.0:$PORT"
